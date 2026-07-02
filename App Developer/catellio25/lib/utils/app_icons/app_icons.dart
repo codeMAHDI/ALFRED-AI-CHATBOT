@@ -27,6 +27,12 @@ class AppIcons {
   static const String calenderIcon = "$basePath/calender.svg";
   static const String profileIcon = "$basePath/profile.svg";
 
+  ///=========================Drawer Icons======================
+  static const String historyIcon = "$basePath/history.svg";
+  static const String saveIcon = "$basePath/save.svg";
+  static const String voiceIcon = "$basePath/voice.svg";
+  static const String budgetIcon = "$basePath/budget.svg";
+
 
   ///=========================Profile Icons======================
 

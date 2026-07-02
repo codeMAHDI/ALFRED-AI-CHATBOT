@@ -23,7 +23,7 @@ class MainLayoutView extends GetView<MainLayoutViewModel> {
           Obx(() => IndexedStack(
             index: controller.selectedIndex.value,
             children: [
-              const HomeView(), // 0: Home
+               HomeView(), // 0: Home
               _buildPlaceholder(AppStrings.plans), // 1: Plans
               _buildPlaceholder(AppStrings.discovery), // 2: Discovery
               _buildPlaceholder(AppStrings.calender), // 3: Calender

@@ -198,6 +198,53 @@ class AppStrings {
   static const String sampleEventTitle = "Private Gallery Tour";
   static const String sampleEventTime = "7:00 PM";
   static const String sampleEventLocation = "The Modern Wing";
+  
+  ///========================== Drawer =====================//
+  static const String julianThorne = "Julian Thorne";
+  static const String eliteMember = "ELITE MEMBER";
+  static const String dateHistory = "Date History";
+  static const String savedItems = "Saved Items";
+  static const String premiumVoiceStore = "Premium Voice Store";
+  static const String budgetInsights = "Budget Insights";
+
+  ///========================== Subscription =====================//
+  static const String subscription = "Subscription";
+  static const String upgradeToPremium = "Upgrade To\nPremium";
+  static const String unlockFullPotential = "Unlock the full potential of your personal\nAI concierge.";
+  static const String essentials = "ESSENTIALS";
+  static const String free = "Free";
+  static const String zeroForever = "\$0 / forever";
+  static const String basicConcierge = "Basic concierge";
+  static const String discoveryServices = "Discovery services";
+  static const String datingCoach = "Dating Coach";
+  static const String currentPlan = "Current Plan";
+  
+  static const String mostPopular = "MOST POPULAR";
+  static const String enhanced = "ENHANCED";
+  static const String planPremium = "Premium";
+  static const String twentyFourMonth = "\$24 / month";
+  static const String voicePersonalization = "Voice personalization";
+  static const String datingTips = "Dating tips & coaching";
+  static const String secondDateIdeas = "Second-date ideas";
+  static const String dressSuggestions = "Dress & attire suggestions";
+  static const String advancedPlanning = "Advanced planning assistance";
+  static const String enhancedAi = "Enhanced AI capabilities";
+  
+  static const String ultimate = "ULTIMATE";
+  static const String planElite = "Elite";
+  static const String ninetyNineMonth = "\$99 / month";
+  static const String voiceSynthesis = "Voice Synthesis";
+  static const String priorityConcierge = "Priority Concierge";
+  static const String selectElite = "Select Elite";
+  
+  ///========================== Notifications =====================//
+  static const String notifications = "Notifications";
+  static const String curatedUpdates = "Your curated updates for today";
+  static const String markAllAsRead = "MARK\nALL\nAS READ";
+  static const String newUpdates = "NEW •";
+  static const String earlierUpdates = "EARLIER";
+  static const String endOfUpdates = "END OF UPDATES";
+
   static const String goodEvening = "Good Evening";
   static const String myProperties = "My Properties";
   static const String serciceBookings = "Sercice Bookings";

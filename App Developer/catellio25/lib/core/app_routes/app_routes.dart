@@ -14,6 +14,10 @@ import '../../features/profile_setup/bindings/profile_setup_binding.dart';
 import '../../features/profile_setup/views/profile_setup_view.dart';
 import '../../features/main_layout/bindings/main_layout_binding.dart';
 import '../../features/main_layout/views/main_layout_view.dart';
+import '../../features/subscription/bindings/subscription_binding.dart';
+import '../../features/subscription/views/subscription_view.dart';
+import '../../features/notifications/bindings/notifications_binding.dart';
+import '../../features/notifications/views/notifications_view.dart';
 
 class AppRoutes {
 
@@ -25,6 +29,8 @@ class AppRoutes {
   static const String otpScreen = "/otp_screen";
   static const String profileSetupScreen = "/profile_setup_screen";
   static const String mainLayoutScreen = "/main_layout_screen";
+  static const String subscriptionScreen = "/subscription_screen";
+  static const String notificationsScreen = "/notifications_screen";
 
   /// ==================== SHARED ROUTES (Profile & Chat) ====================
 
@@ -37,5 +43,7 @@ class AppRoutes {
     GetPage(name: otpScreen, page: () => const OtpView(), binding: OtpBinding()),
     GetPage(name: profileSetupScreen, page: () => const ProfileSetupView(), binding: ProfileSetupBinding()),
     GetPage(name: mainLayoutScreen, page: () => const MainLayoutView(), binding: MainLayoutBinding()),
+    GetPage(name: subscriptionScreen, page: () => const SubscriptionView(), binding: SubscriptionBinding()),
+    GetPage(name: notificationsScreen, page: () => const NotificationsView(), binding: NotificationsBinding()),
   ];
 }
