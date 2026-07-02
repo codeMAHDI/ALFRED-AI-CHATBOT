@@ -9,6 +9,10 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../view_models/main_layout_view_model.dart';
 import '../../home/views/home_view.dart';
+import '../../plans/views/plans_view.dart';
+import '../../calendar/views/calendar_view.dart';
+import '../../discovery/views/discovery_view.dart';
+import '../../profile/views/profile_view.dart';
 
 class MainLayoutView extends GetView<MainLayoutViewModel> {
   const MainLayoutView({super.key});
@@ -24,10 +28,10 @@ class MainLayoutView extends GetView<MainLayoutViewModel> {
             index: controller.selectedIndex.value,
             children: [
                HomeView(), // 0: Home
-              _buildPlaceholder(AppStrings.plans), // 1: Plans
-              _buildPlaceholder(AppStrings.discovery), // 2: Discovery
-              _buildPlaceholder(AppStrings.calender), // 3: Calender
-              _buildPlaceholder(AppStrings.profile), // 4: Profile
+              const PlansView(), // 1: Plans
+              const DiscoveryView(), // 2: Discovery
+              const CalendarView(isStandalone: false), // 3: Calender
+              const ProfileView(), // 4: Profile
             ],
           )),
           

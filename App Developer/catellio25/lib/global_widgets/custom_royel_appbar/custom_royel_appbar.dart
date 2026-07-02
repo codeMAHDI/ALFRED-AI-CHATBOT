@@ -13,6 +13,7 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
   final bool showAddButton;
   final Color? titleColor;
   final PreferredSizeWidget? bottom;
+  final Widget? actionWidget;
 
   const CustomRoyelAppbar({
     super.key,
@@ -24,6 +25,7 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
     this.showAddButton = false,
     this.titleColor,
     this.bottom,
+    this.actionWidget,
   });
 
   @override
@@ -76,6 +78,13 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
               ),
             ),
           ),
+
+        // Custom widget (like profile picture)
+        if (actionWidget != null)
+          Padding(
+            padding: const EdgeInsets.only(right: 20),
+            child: Center(child: actionWidget!),
+          ),
       ],
       backgroundColor: Colors.transparent,
       leading: leftIcon == true ? BackButton(color: Colors.black) : null,
@@ -83,7 +92,7 @@ class CustomRoyelAppbar extends StatelessWidget implements PreferredSizeWidget {
         text: titleName ?? "",
         fontSize: 24.w,
         fontWeight: FontWeight.w700,
-        color: AppColors.primary,
+        color: titleColor ?? AppColors.primary,
       ),
       bottom: bottom,
     );

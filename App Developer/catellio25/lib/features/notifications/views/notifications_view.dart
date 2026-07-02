@@ -18,6 +18,7 @@ class NotificationsView extends GetView<NotificationsViewModel> {
       appBar: const CustomRoyelAppbar(
         titleName: AppStrings.notifications,
         leftIcon: true,
+        titleColor: AppColors.black,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
@@ -27,12 +28,15 @@ class NotificationsView extends GetView<NotificationsViewModel> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(top: 24.h, bottom: 40.h, right: 60.w),
-                  child: CustomText(
-                    text: AppStrings.curatedUpdates,
-                    fontSize: 14.sp,
-                    color: AppColors.greyShade,
+                SizedBox(
+                  width: double.infinity,
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 24.h, bottom: 40.h, right: 60.w),
+                    child: CustomText(
+                      text: AppStrings.curatedUpdates,
+                      fontSize: 14.sp,
+                      color: AppColors.greyShade,
+                    ),
                   ),
                 ),
                 Positioned(

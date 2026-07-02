@@ -69,30 +69,36 @@ class HomeView extends GetView<HomeViewModel> {
             SizedBox(height: 40.h),
 
             // Search Bar
-            Container(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
-              decoration: BoxDecoration(
-                color: AppColors.white,
-                borderRadius: BorderRadius.circular(100.r),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
-                  ),
-                ],
-              ),
-              child: Row(
-                children: [
-                  Expanded(
-                    child: CustomText(
-                      text: AppStrings.askAlfred,
-                      fontSize: 14.sp,
-                      color: AppColors.greyShade,
+            GestureDetector(
+              onTap: () => Get.toNamed(AppRoutes.alfredChatScreen),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
+                decoration: BoxDecoration(
+                  color: AppColors.white,
+                  borderRadius: BorderRadius.circular(100.r),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.02),
+                      blurRadius: 10,
+                      offset: const Offset(0, 4),
                     ),
-                  ),
-                  Icon(Icons.mic_none, color: AppColors.black, size: 24.sp),
-                ],
+                  ],
+                ),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: CustomText(
+                        text: AppStrings.askAlfred,
+                        fontSize: 14.sp,
+                        color: AppColors.greyShade,
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => Get.toNamed(AppRoutes.voiceListeningScreen),
+                      child: Icon(Icons.mic_none, color: AppColors.black, size: 24.sp),
+                    ),
+                  ],
+                ),
               ),
             ),
             SizedBox(height: 40.h),
@@ -198,31 +204,34 @@ class HomeView extends GetView<HomeViewModel> {
   }
 
   Widget _buildSuggestionCard(String title, IconData icon) {
-    return Container(
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        borderRadius: BorderRadius.circular(16.r),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.02),
-            blurRadius: 10,
-            offset: const Offset(0, 4),
-          ),
-        ],
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Icon(icon, color: AppColors.greyShade, size: 18.sp),
-          SizedBox(width: 8.w),
-          CustomText(
-            text: title,
-            fontSize: 14.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.black,
-          ),
-        ],
+    return GestureDetector(
+      onTap: () => Get.toNamed(AppRoutes.alfredChatScreen),
+      child: Container(
+        padding: EdgeInsets.symmetric(vertical: 16.h),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(16.r),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.02),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: AppColors.greyShade, size: 18.sp),
+            SizedBox(width: 8.w),
+            CustomText(
+              text: title,
+              fontSize: 14.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.black,
+            ),
+          ],
+        ),
       ),
     );
   }

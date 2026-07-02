@@ -245,6 +245,52 @@ class AppStrings {
   static const String earlierUpdates = "EARLIER";
   static const String endOfUpdates = "END OF UPDATES";
 
+  ///========================== Alfred Chat =====================//
+  static const String messageAlfred = "Message Alfred...";
+  static const String alfredEncrypted = "Alfred Private Estate AI • Encrypted & Secure";
+  static const String you = "You";
+  static const String chatAlfred = "Alfred";
+
+  ///========================== Voice Listening =====================//
+  static const String listening = "Listening...";
+  static const String voicePlaceholderText = "\"Plan a surprise dinner for two at a\nrooftop gallery.\"";
+  static const String alfredConcierge = "ALFRED INTELLIGENT CONCIERGE";
+
+  ///========================== Finding Date Splash =====================//
+  static const String findingDate = "Finding the perfect date...";
+  static const String secureAiEngine = "SECURE AI ENGINE ACTIVE";
+
+  ///========================== Plans Tab =====================//
+  static const String recommendedDateIdeas = "Recommended Date\nIdeas";
+  static const String handpickedExperiences = "Handpicked experiences curated for your\npreferences.";
+  static const String plan1Title = "Coffee & Nature Walk";
+  static const String plan1Budget = "BUDGET: \$90";
+  static const String plan1Desc = "A quiet morning through the\nbotanical gardens followed by a...";
+  static const String plan2Title = "Italian Dinner Experience";
+  static const String plan2Budget = "BUDGET: \$140";
+  static const String plan2Desc = "Authentic five-course meal at the\nterrace, overlooking the city skyline";
+  static const String plan3Title = "Mountain Hiking Adventure";
+  static const String plan3Budget = "BUDGET: \$110";
+  static const String plan3Desc = "A guided trek through secret trails\nwith a gourmet picnic set up at\nthe...";
+  static const String viewPlan = "View Plan";
+
+  ///========================== Plan Details =====================//
+  static const String planDetailsTitle = "Plan details";
+  static const String planDay = "Saturday";
+  static const String planDate = "December 14, 2024";
+  static const String yourPerfectDate = "Your Perfect Date";
+  static const String viewFullRoute = "View Full Route";
+  static const String estimatedCost = "ESTIMATED\nCOST";
+  static const String basedOnRecentAverages = "Based on recent\naverages";
+  static const String savePlan = "Save Plan";
+  static const String addToCalendar = "Add To Calendar";
+  
+  ///========================== Success Dialog =====================//
+  static const String dateAddedSuccessfully = "Date Added\nSuccessfully";
+  static const String dateSavedDesc = "Your date has been saved and\nadded to your calendar.";
+  static const String viewCalendar = "View Calendar";
+  static const String backToHome = "Back To Home";
+
   static const String goodEvening = "Good Evening";
   static const String myProperties = "My Properties";
   static const String serciceBookings = "Sercice Bookings";

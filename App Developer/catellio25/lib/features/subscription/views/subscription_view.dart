@@ -18,6 +18,7 @@ class SubscriptionView extends GetView<SubscriptionViewModel> {
       appBar: const CustomRoyelAppbar(
         titleName: AppStrings.subscription,
         leftIcon: true,
+        titleColor: AppColors.black,
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 24.h),
