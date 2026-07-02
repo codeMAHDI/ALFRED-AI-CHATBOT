@@ -22,7 +22,7 @@ class CustomTextField extends StatefulWidget {
     this.validator,
     this.hintText,
     this.hintStyle,
-    this.fillColor = AppColors.black_80,
+    this.fillColor = Colors.transparent,
     this.suffixIcon,
     this.suffixIconColor,
     this.fieldBorderRadius = 16,

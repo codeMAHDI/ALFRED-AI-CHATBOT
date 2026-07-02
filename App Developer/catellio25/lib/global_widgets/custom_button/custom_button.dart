@@ -13,7 +13,7 @@ class CustomButton extends StatelessWidget {
     this.title = '',
     this.marginVertical = 0,
     this.marginHorizontal = 0,
-    this.fillColor = AppColors.red,
+    this.fillColor = AppColors.black,
     this.textColor = AppColors.white,
     this.isBorder = false,
     this.fontSize,
@@ -24,6 +24,7 @@ class CustomButton extends StatelessWidget {
     this.imageSpacing = 8,
     this.suffixIcon,
     this.suffixIconColor,
+    this.imageColor,
   });
 
   final double height;
@@ -43,6 +44,7 @@ class CustomButton extends StatelessWidget {
   final double imageSpacing;
   final IconData? suffixIcon;
   final Color? suffixIconColor;
+  final Color? imageColor;
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +61,7 @@ class CustomButton extends StatelessWidget {
           border: isBorder
               ? Border.all(color: textColor, width: borderWidth ?? .5)
               : null,
-          borderRadius: BorderRadius.circular(borderRadius ?? 10),
+          borderRadius: BorderRadius.circular(borderRadius ?? 100),
           color: fillColor,
         ),
         child: imageSrc != null
@@ -72,13 +74,13 @@ class CustomButton extends StatelessWidget {
               imageSrc!,
               width: imageSize ?? 20.sp,
               height: imageSize ?? 20.sp,
-              color: textColor,
+              color: imageColor,
             )
                 : Image.asset(
               imageSrc!,
               width: imageSize ?? 20.sp,
               height: imageSize ?? 20.sp,
-              color: textColor,
+              color: imageColor,
             ),
             SizedBox(width: imageSpacing),
             CustomText(

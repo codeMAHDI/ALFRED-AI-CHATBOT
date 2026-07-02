@@ -14,6 +14,33 @@ class AppStrings {
   static const String item = "Item";
 
   ///========================== Onboarding Screen =====================//
+  // Splash
+  static const String alfred = "A L F R E D";
+  static const String yourPersonalDateConcierge = "YOUR PERSONAL DATE CONCIERGE";
+  static const String initializingSecureConcierge = "INITIALIZING SECURE CONCIERGE...";
+
+  // Onboarding 1
+  static const String planYourLife = "Plan Your Life\nWithout The Stress";
+  static const String planYourLifeSub = "Let Alfred handle the details of your\nschedule, dining, and travel while you\nfocus on what truly matters.";
+  static const String alreadyHaveAccountSignIn = "Already have an account? Sign in";
+
+  // Onboarding 2
+  static const String meetAlfred = "Meet Alfred";
+  static const String meetAlfredSub = "Your AI-powered personal concierge\nfor unforgettable dates.";
+  static const String tailoredSuggestions = "Tailored Suggestions";
+  static const String premiumAccess = "Premium Access";
+  static const String back = "Back";
+
+  // Onboarding 3
+  static const String smartPlanning = "Smart Planning";
+  static const String smartPlanningSub = "Dates, schedules, restaurants and\nactivities handled automatically.";
+  static const String exclusiveDining = "Exclusive Dining";
+  static const String exclusiveDiningSub = "Secured reservations at top-tier venues.";
+  static const String bespokeTravel = "Bespoke Travel";
+  static const String bespokeTravelSub = "Itineraries tailored to your specific pace.";
+
+  // Common
+
   static const String skip = "Skip";
   static const String next = "Next";
   static const String continueTxt = "Continue";
@@ -38,23 +65,51 @@ class AppStrings {
   static const String guest = "Guest";
 
   ///========================== Auth Screen =====================//
+  // Login
+  static const String welcomeTo = "Welcome To";
+  static const String alfredTitle = "Alfred";
+  static const String yourSilentPartner = "Your silent partner in exceptional living.";
+  static const String emailAddress = "EMAIL ADDRESS";
+  static const String emailHint = "name@example.com";
+  static const String signInCaps = "SIGN IN";
+  static const String orContinueWith = "OR CONTINUE WITH";
+  static const String google = "Google";
+  static const String apple = "Apple";
+  static const String newHere = "New here? ";
+  static const String createAnAccount = "Create an account";
+  static const String byContinuing = "By continuing, you agree to our";
+  static const String termsOfService = "Terms of Service";
+  static const String andText = " and ";
+
+  // Signup
+  static const String joinAlfred = "Join Alfred";
+  static const String yourPersonalConcierge = "Your personal concierge for\nexceptional living.";
+  static const String nameCaps = "NAME";
+  static const String nameHint = "Johnathan Sterling";
+  static const String emailCaps = "EMAIL";
+  static const String emailSignupHint = "sterling@private.estate";
+  static const String passwordCaps = "PASSWORD";
+  static const String confirmPasswordCaps = "CONFIRM PASSWORD";
+  static const String createAccountCaps = "CREATE ACCOUNT";
+  static const String byCreatingAccount = "By creating an account, you agree to our ";
+  static const String alreadyHaveAccount = "Already have an account? ";
+  static const String signInLink = "Sign in";
+
+  // OTP
+  static const String verifyYourIdentity = "Verify Your Identity";
+  static const String weSentCode = "We've sent a 6-digit code to";
+  static const String didntReceiveCode = "Didn't receive the code? ";
+  static const String resendLink = "Resend";
+  static const String verifyCaps = "VERIFY";
+
+  // Common Auth
   static const String signIn = "Sign In";
   static const String createAccount = "Create Account";
-  static const String emailOrPhone = "Email or Phone";
-  static const String enterEmailOrPhone = "Enter email or phone number";
-  static const String password = "Password";
-  static const String enterPassword = "Enter password";
+  static const String password = "PASSWORD";
   static const String forgotPasswordQ = "Forgot Password?";
-  static const String byContinuingYouAgree =
-      "By continuing, you agree to 2SEATS's ";
-  static const String terms = "Terms";
-  static const String and = " and ";
   static const String privacyPolicy = "Privacy Policy";
   static const String fullName = "Full Name";
-  static const String enterYourName = "Enter your name";
-  static const String createStrongPassword = "Create a strong password";
   static const String confirmPassword = "Confirm Password";
-  static const String retypePassword = "Retype password";
 
   ///========================== Forgot Password =====================//
   static const String forgotPassword = "FORGOT PASSWORD";
@@ -69,7 +124,6 @@ class AppStrings {
       "Enter the 6-digit code sent to your email or phone number.";
   static const String resendCodeIn = "Resend code in ";
   static const String verify = "Verify";
-  static const String didntReceiveCode = "Didn't receive the code? ";
   static const String resend = "Resend";
 
   ///========================== Set New Password =====================//
@@ -77,11 +131,73 @@ class AppStrings {
   static const String passwordMustHave = "Password must have 6-8 characters.";
   static const String newPassword = "New Password";
   static const String confirmNewPassword = "Confirm New Password";
-  static const String updatePassword = "Update Password";
+  ///========================== Profile Setup Screen =====================//
+  static const String step1Of3 = "Step 1 of 3";
+  static const String step2Of3 = "Step 2 of 3";
+  static const String step3Of3 = "Step 3 of 3";
+  static const String identityVerification = "Identity Verification";
 
+  // Step 1
+  static const String tellUsAboutYourself = "Tell Us About Yourself";
+  static const String alfredRequiresDetails =
+      "Alfred requires a few details to tailor\nyour private estate experience\nprecisely to your lifestyle.";
+  static const String eGName = "E.g. Alexander Hamilton";
+  static const String age = "Age";
+  static const String years = "Years";
+  static const String gender = "Gender";
+  static const String select = "Select";
+  static const String location = "Location";
+  static const String currentCity = "Current City";
+  static const String dataEncryptionActive = "Data Encryption Active";
+  static const String encryptionDesc =
+      "Your personal details are secured with\nbank-grade encryption and never shared\nwith third parties.";
+
+  // Step 2
+  static const String whatDoYouEnjoy = "What Do You Enjoy?";
+  static const String selectYourInterests =
+      "Select your interests to help Alfred\ncurate your perfect experience.";
+  static const String coffeeDates = "Coffee Dates";
+  static const String movies = "Movies";
+  static const String fineDining = "Fine Dining";
+  static const String travel = "Travel";
+  static const String adventure = "Adventure";
+  static const String sports = "Sports";
+  static const String nature = "Nature";
+  static const String museums = "Museums";
+  static const String luxuryExperiences = "Luxury Experiences";
+
+  // Step 3
+  static const String preferredDateBudget = "Preferred Date Budget";
+  static const String helpsAlfredTailor =
+      "This helps Alfred tailor\nrecommendations to your lifestyle.";
+  static const String casual = "Casual";
+  static const String casualPrice = "\$20–\$50";
+  static const String standard = "Standard";
+  static const String standardPrice = "\$50–\$100";
+  static const String premiumBudget = "Premium";
+  static const String premiumPrice = "\$100–\$300";
+  static const String exceptional = "Exceptional";
+  static const String exceptionalPrice = "\$300+";
+  static const String enterCustomAmount = "Enter custom amount";
+  static const String customAmountHint = "\$ 0.00";
+
+  ///========================== Home / Generic =====================//
   static const String home = "Home";
-  static const String message = "Message";
+  static const String plans = "Plans";
+  static const String discovery = "Discovery";
+  static const String calender = "Calender";
   static const String profile = "Profile";
+  static const String goodEveningName = "Good Evening, Carl";
+  static const String organizedSchedule = "I have organized your upcoming schedule.";
+  static const String askAlfred = "Ask Alfred anything...";
+  static const String suggestions = "SUGGESTIONS";
+  static const String planADate = "Plan A Date";
+  static const String dateIdeas = "Date Ideas";
+  static const String nextEvent = "NEXT EVENT";
+  static const String eliteTag = "ELITE";
+  static const String sampleEventTitle = "Private Gallery Tour";
+  static const String sampleEventTime = "7:00 PM";
+  static const String sampleEventLocation = "The Modern Wing";
   static const String goodEvening = "Good Evening";
   static const String myProperties = "My Properties";
   static const String serciceBookings = "Sercice Bookings";
