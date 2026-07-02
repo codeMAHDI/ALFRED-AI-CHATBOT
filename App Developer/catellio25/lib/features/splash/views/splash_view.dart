@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../../core/theme/app_colors.dart';
+import '../../../utils/app_const/app_const.dart';
 import '../view_models/splash_view_model.dart';
-import '../../../core/constants/app_colors.dart';
-import '../../../core/constants/app_constants.dart';
 
-class SplashView extends GetView<SplashViewModel> {
-  const SplashView({Key? key}) : super(key: key);
+class SplashScreen extends GetView<SplashViewModel> {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,19 +22,19 @@ class SplashView extends GetView<SplashViewModel> {
             const Icon(
               Icons.flutter_dash,
               size: 100,
-              color: AppColors.onPrimary,
+              color: AppColors.primary,
             ),
             const SizedBox(height: 24),
             Text(
-              AppConstants.appName,
+              AppConstants.refreshToken,
               style: Theme.of(context).textTheme.headlineMedium?.copyWith(
-                    color: AppColors.onPrimary,
+                    color: AppColors.primary,
                     fontWeight: FontWeight.bold,
                   ),
             ),
             const SizedBox(height: 48),
             const CircularProgressIndicator(
-              valueColor: AlwaysStoppedAnimation<Color>(AppColors.secondary),
+
             ),
           ],
         ),
