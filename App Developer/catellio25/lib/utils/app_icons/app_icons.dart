@@ -41,6 +41,5 @@ class AppIcons {
   static const String executiveVoiceIcon = "$basePath/executive.svg";
   static const String elegantVoiceIcon = "$basePath/elegant.svg";
 
-  ///=========================Nav Bar Icons======================
 
 }

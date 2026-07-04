@@ -10,7 +10,7 @@ void showCustomSnackBar(String? message, {bool isError = true}) {
       gravity: ToastGravity.TOP,
       timeInSecForIosWeb: 1,
       backgroundColor: AppColors.background,
-      textColor: isError ? Colors.red : Colors.blue,
+      textColor: isError ? Colors.red : Colors.black,
     );
   }
 }

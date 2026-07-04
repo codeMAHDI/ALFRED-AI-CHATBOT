@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_screen.dart';
 import '../../features/onboarding/bindings/onboarding_binding.dart';
@@ -53,7 +52,6 @@ import '../../features/budget_insights/views/budget_insights_view.dart';
 
 class AppRoutes {
 
-  /// ==================== INITIAL & AUTH ROUTES ====================
   static const String splashScreen = "/splash_screen";
   static const String onboardingScreen = "/onboarding_screen";
   static const String signInScreen = "/sign_in_screen";
@@ -80,10 +78,8 @@ class AppRoutes {
   static const String premiumVoiceStoreScreen = "/premium_voice_store_screen";
   static const String budgetInsightsScreen = "/budget_insights_screen";
 
-  /// ==================== SHARED ROUTES (Profile & Chat) ====================
 
   static List<GetPage> routes = [
-    /// ==================== INITIAL & AUTH PAGES ====================
     GetPage(name: splashScreen, page: () => const SplashScreen(), binding: SplashBinding()),
     GetPage(name: onboardingScreen, page: () => const OnboardingView(), binding: OnboardingBinding()),
     GetPage(name: signInScreen, page: () => const SignInView(), binding: SignInBinding()),
