@@ -214,6 +214,7 @@ class EditProfileScreen extends GetView<EditProfileController> {
                 fontSize: 12.sp,
                 color: AppColors.greyShade,
                 textAlign: TextAlign.center,
+                maxLines: 4,
               ),
             ),
             
