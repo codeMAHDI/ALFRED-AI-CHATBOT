@@ -4,6 +4,6 @@ import '../view_models/splash_view_model.dart';
 class SplashBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put<SplashViewModel>(SplashViewModel());
+    Get.put<SplashController>(SplashController());
   }
 }

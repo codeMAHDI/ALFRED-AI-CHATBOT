@@ -8,7 +8,7 @@ import '../../../global_widgets/custom_image/custom_image.dart';
 import '../view_models/splash_view_model.dart';
 import '../../../global_widgets/custom_text/custom_text.dart';
 
-class SplashScreen extends GetView<SplashViewModel> {
+class SplashScreen extends GetView<SplashController> {
   const SplashScreen({super.key});
 
   @override
@@ -23,14 +23,14 @@ class SplashScreen extends GetView<SplashViewModel> {
             // Center Logo
             CustomImage(
               imageSrc: AppIcons.splashIcon,
-              height: 180.h,
-              width: 180.h,
+              height: 232.h,
+              width: 232.h,
               boxFit: BoxFit.contain,
             ),
             SizedBox(height: 30.h),
             CustomText(
               text: AppStrings.alfred,
-              fontSize: 32.sp,
+              fontSize: 36.sp,
               fontWeight: FontWeight.w900,
               color: AppColors.black,
               textAlign: TextAlign.center,
@@ -58,7 +58,7 @@ class SplashScreen extends GetView<SplashViewModel> {
                 SizedBox(width: 8.w),
                 CustomText(
                   text: AppStrings.initializingSecureConcierge,
-                  fontSize: 10.sp,
+                  fontSize: 11.sp,
                   fontWeight: FontWeight.w500,
                   color: AppColors.greyShade,
                 ),
@@ -71,4 +71,3 @@ class SplashScreen extends GetView<SplashViewModel> {
     );
   }
 }
-

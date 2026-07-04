@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_screen.dart';
 import '../../features/onboarding/bindings/onboarding_binding.dart';
-import '../../features/onboarding/views/onboarding_view.dart';
+import '../../features/onboarding/views/onboarding_screen.dart';
 import '../../features/auth/sign_in/bindings/sign_in_binding.dart';
 import '../../features/auth/sign_in/views/sign_in_view.dart';
 import '../../features/auth/sign_up/bindings/sign_up_binding.dart';
@@ -81,7 +81,7 @@ class AppRoutes {
 
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen(), binding: SplashBinding()),
-    GetPage(name: onboardingScreen, page: () => const OnboardingView(), binding: OnboardingBinding()),
+    GetPage(name: onboardingScreen, page: () => const OnboardingScreen(), binding: OnboardingBinding()),
     GetPage(name: signInScreen, page: () => const SignInView(), binding: SignInBinding()),
     GetPage(name: signUpScreen, page: () => const SignUpView(), binding: SignUpBinding()),
     GetPage(name: otpScreen, page: () => const OtpView(), binding: OtpBinding()),
