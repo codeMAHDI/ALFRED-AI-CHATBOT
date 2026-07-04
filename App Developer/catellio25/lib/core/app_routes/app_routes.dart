@@ -10,7 +10,7 @@ import '../../features/auth/views/verify_otp_screen.dart';
 import '../../features/auth/views/forgot_password_screen.dart';
 import '../../features/auth/views/set_new_password_screen.dart';
 import '../../features/profile_setup/bindings/profile_setup_binding.dart';
-import '../../features/profile_setup/views/profile_setup_view.dart';
+import '../../features/profile_setup/views/profile_setup_screen.dart';
 import '../../features/main_layout/bindings/main_layout_binding.dart';
 import '../../features/main_layout/views/main_layout_view.dart';
 import '../../features/subscription/bindings/subscription_binding.dart';
@@ -89,7 +89,7 @@ class AppRoutes {
     GetPage(name: verifyOtpScreen, page: () => const VerifyOtpScreen(), binding: AuthBinding()),
     GetPage(name: forgotPasswordScreen, page: () => const ForgotPasswordScreen(), binding: AuthBinding()),
     GetPage(name: setNewPasswordScreen, page: () => const SetNewPasswordScreen(), binding: AuthBinding()),
-    GetPage(name: profileSetupScreen, page: () => const ProfileSetupView(), binding: ProfileSetupBinding()),
+    GetPage(name: profileSetupScreen, page: () => const ProfileSetupScreen(), binding: ProfileSetupBinding()),
     GetPage(name: mainLayoutScreen, page: () => const MainLayoutView(), binding: MainLayoutBinding()),
     GetPage(name: subscriptionScreen, page: () => const SubscriptionView(), binding: SubscriptionBinding()),
     GetPage(name: notificationsScreen, page: () => const NotificationsView(), binding: NotificationsBinding()),
