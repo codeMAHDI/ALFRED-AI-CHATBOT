@@ -61,8 +61,8 @@ class NotificationsScreen extends GetView<NotificationsController> {
                         AppStrings.markAllAsRead,
                         textAlign: TextAlign.center,
                         style: TextStyle(
-                          fontSize: 8.sp,
-                          fontWeight: FontWeight.bold,
+                          fontSize: 10.sp,
+                          fontWeight: FontWeight.w700,
                           color: AppColors.greyShade,
                           height: 1.2,
                         ),
@@ -75,7 +75,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
             
             CustomText(
               text: AppStrings.newUpdates,
-              fontSize: 12.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.black,
             ),
@@ -187,7 +187,7 @@ class NotificationsScreen extends GetView<NotificationsController> {
               children: [
                 CustomText(
                   text: title,
-                  fontSize: 14.sp,
+                  fontSize: 16.sp,
                   fontWeight: FontWeight.w600,
                   color: AppColors.black,
                   maxLines: 2,
