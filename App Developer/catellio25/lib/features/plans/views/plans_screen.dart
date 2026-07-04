@@ -7,8 +7,8 @@ import '../../../global_widgets/custom_text/custom_text.dart';
 import '../../../core/app_routes/app_routes.dart';
 import 'package:get/get.dart';
 
-class PlansView extends StatelessWidget {
-  const PlansView({super.key});
+class PlansScreen extends StatelessWidget {
+  const PlansScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

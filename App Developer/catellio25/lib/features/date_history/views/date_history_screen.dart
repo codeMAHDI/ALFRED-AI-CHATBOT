@@ -8,8 +8,8 @@ import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/date_history_controller.dart';
 
-class DateHistoryView extends GetView<DateHistoryController> {
-  DateHistoryView({super.key});
+class DateHistoryScreen extends GetView<DateHistoryController> {
+  DateHistoryScreen({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

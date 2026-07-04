@@ -8,8 +8,8 @@ import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/budget_insights_controller.dart';
 
-class BudgetInsightsView extends GetView<BudgetInsightsController> {
-  BudgetInsightsView({super.key});
+class BudgetInsightsScreen extends GetView<BudgetInsightsController> {
+  BudgetInsightsScreen({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

@@ -6,8 +6,8 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../view_models/discovery_details_controller.dart';
 
-class DiscoveryDetailsView extends GetView<DiscoveryDetailsController> {
-  const DiscoveryDetailsView({super.key});
+class DiscoveryDetailsScreen extends GetView<DiscoveryDetailsController> {
+  const DiscoveryDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

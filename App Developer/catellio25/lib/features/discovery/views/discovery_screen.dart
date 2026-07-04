@@ -9,8 +9,8 @@ import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart'
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/discovery_controller.dart';
 
-class DiscoveryView extends GetView<DiscoveryController> {
-  const DiscoveryView({super.key});
+class DiscoveryScreen extends GetView<DiscoveryController> {
+  const DiscoveryScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -9,8 +9,8 @@ import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart'
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/plan_details_controller.dart';
 
-class PlanDetailsView extends GetView<PlanDetailsController> {
-  const PlanDetailsView({super.key});
+class PlanDetailsScreen extends GetView<PlanDetailsController> {
+  const PlanDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -398,7 +398,7 @@ class PlanDetailsView extends GetView<PlanDetailsController> {
               // Back To Home Button
               GestureDetector(
                 onTap: () {
-                  Get.offAllNamed(AppRoutes.mainLayoutScreen, arguments: {'tab': 0});
+                  Get.offAllNamed(AppRoutes.homeScreen, arguments: {'tab': 0});
                 },
                 child: Container(
                   width: double.infinity,

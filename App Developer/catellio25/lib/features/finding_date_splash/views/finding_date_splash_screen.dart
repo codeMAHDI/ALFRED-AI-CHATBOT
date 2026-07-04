@@ -9,8 +9,8 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
 import '../view_models/finding_date_splash_controller.dart';
 
-class FindingDateSplashView extends GetView<FindingDateSplashController> {
-  const FindingDateSplashView({super.key});
+class FindingDateSplashScreen extends GetView<FindingDateSplashController> {
+  const FindingDateSplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

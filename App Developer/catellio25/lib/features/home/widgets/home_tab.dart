@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_images/app_images.dart';
@@ -11,10 +10,10 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
 import '../view_models/home_controller.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../../main_layout/view_models/main_layout_controller.dart';
+import '../view_models/main_layout_controller.dart';
 
-class HomeView extends GetView<HomeController> {
-  const HomeView({super.key});
+class HomeTab extends GetView<HomeController> {
+  const HomeTab({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,14 +28,14 @@ class HomeView extends GetView<HomeController> {
             // Greeting
             CustomText(
               text: AppStrings.goodEveningName,
-              fontSize: 24.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.black,
             ),
             SizedBox(height: 8.h),
             CustomText(
               text: AppStrings.organizedSchedule,
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.greyShade,
             ),
             SizedBox(height: 40.h),
@@ -56,7 +55,7 @@ class HomeView extends GetView<HomeController> {
               child: Text(
                 AppStrings.alfredTitle.toUpperCase(),
                 style: TextStyle(
-                  fontSize: 16.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 8.w,
                   color: AppColors.black,
@@ -65,7 +64,6 @@ class HomeView extends GetView<HomeController> {
             ),
             SizedBox(height: 40.h),
 
-            // Search Bar
             GestureDetector(
               onTap: () => Get.toNamed(AppRoutes.alfredChatScreen),
               child: Container(
@@ -75,9 +73,9 @@ class HomeView extends GetView<HomeController> {
                   borderRadius: BorderRadius.circular(100.r),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black.withOpacity(0.02),
-                      blurRadius: 10,
-                      offset: const Offset(0, 4),
+                      color: Colors.black.withOpacity(0.06),
+                      blurRadius: 16,
+                      offset: const Offset(0, 8),
                     ),
                   ],
                 ),
@@ -86,7 +84,7 @@ class HomeView extends GetView<HomeController> {
                     Expanded(
                       child: CustomText(
                         text: AppStrings.askAlfred,
-                        fontSize: 14.sp,
+                        fontSize: 16.sp,
                         color: AppColors.greyShade,
                       ),
                     ),
@@ -103,10 +101,9 @@ class HomeView extends GetView<HomeController> {
             // SUGGESTIONS
             CustomText(
               text: AppStrings.suggestions,
-              fontSize: 12.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.greyShade,
-              // letterSpacing is not on CustomText, let's just use it normally
             ),
             SizedBox(height: 16.h),
             Row(
@@ -126,9 +123,9 @@ class HomeView extends GetView<HomeController> {
                 borderRadius: BorderRadius.circular(24.r),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.02),
-                    blurRadius: 10,
-                    offset: const Offset(0, 4),
+                    color: Colors.black.withOpacity(0.06),
+                    blurRadius: 16,
+                    offset: const Offset(0, 8),
                   ),
                 ],
               ),
@@ -140,7 +137,7 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       CustomText(
                         text: AppStrings.nextEvent,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.greyShade,
                       ),
@@ -173,7 +170,7 @@ class HomeView extends GetView<HomeController> {
                       SizedBox(width: 6.w),
                       CustomText(
                         text: AppStrings.sampleEventTime,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                         color: AppColors.greyShade,
                       ),
                       SizedBox(width: 24.w),
@@ -186,7 +183,7 @@ class HomeView extends GetView<HomeController> {
                       SizedBox(width: 6.w),
                       CustomText(
                         text: AppStrings.sampleEventLocation,
-                        fontSize: 12.sp,
+                        fontSize: 16.sp,
                         color: AppColors.greyShade,
                       ),
                     ],
@@ -210,9 +207,9 @@ class HomeView extends GetView<HomeController> {
           borderRadius: BorderRadius.circular(16.r),
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.02),
-              blurRadius: 10,
-              offset: const Offset(0, 4),
+              color: Colors.black.withOpacity(0.06),
+              blurRadius: 16,
+              offset: const Offset(0, 8),
             ),
           ],
         ),
@@ -223,7 +220,7 @@ class HomeView extends GetView<HomeController> {
             SizedBox(width: 8.w),
             CustomText(
               text: title,
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               fontWeight: FontWeight.w500,
               color: AppColors.black,
             ),
@@ -258,12 +255,11 @@ class HomeView extends GetView<HomeController> {
         ],
       ),
       centerTitle: true,
-      // The "Alfred" title is in the center
       flexibleSpace: SafeArea(
         child: Center(
           child: CustomText(
             text: AppStrings.alfredTitle,
-            fontSize: 20.sp,
+            fontSize: 28.sp,
             fontWeight: FontWeight.bold,
             color: AppColors.black,
           ),
@@ -272,7 +268,7 @@ class HomeView extends GetView<HomeController> {
       actions: [
         GestureDetector(
           onTap: () => Get.toNamed(AppRoutes.notificationsScreen),
-          child: Icon(Icons.notifications_none, color: AppColors.black, size: 28.sp),
+          child: Icon(Icons.notifications_none, color: AppColors.black, size: 26.sp),
         ),
         SizedBox(width: 16.w),
         CircleAvatar(

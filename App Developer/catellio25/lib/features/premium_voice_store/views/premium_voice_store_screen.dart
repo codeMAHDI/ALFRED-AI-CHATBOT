@@ -10,8 +10,8 @@ import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/premium_voice_store_controller.dart';
 
-class PremiumVoiceStoreView extends GetView<PremiumVoiceStoreController> {
-  PremiumVoiceStoreView({super.key});
+class PremiumVoiceStoreScreen extends GetView<PremiumVoiceStoreController> {
+  PremiumVoiceStoreScreen({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

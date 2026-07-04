@@ -7,8 +7,8 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../view_models/edit_profile_controller.dart';
 
-class EditProfileView extends GetView<EditProfileController> {
-  const EditProfileView({super.key});
+class EditProfileScreen extends GetView<EditProfileController> {
+  const EditProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

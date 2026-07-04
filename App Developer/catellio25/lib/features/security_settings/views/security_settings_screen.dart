@@ -7,8 +7,8 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../view_models/security_settings_controller.dart';
 
-class SecuritySettingsView extends GetView<SecuritySettingsController> {
-  const SecuritySettingsView({super.key});
+class SecuritySettingsScreen extends GetView<SecuritySettingsController> {
+  const SecuritySettingsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

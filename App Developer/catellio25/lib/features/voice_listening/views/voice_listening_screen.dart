@@ -10,8 +10,8 @@ import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart'
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
 import '../view_models/voice_listening_controller.dart';
 
-class VoiceListeningView extends GetView<VoiceListeningController> {
-  const VoiceListeningView({super.key});
+class VoiceListeningScreen extends GetView<VoiceListeningController> {
+  const VoiceListeningScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

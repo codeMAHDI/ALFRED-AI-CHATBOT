@@ -4,11 +4,11 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 
 import '../../core/theme/app_colors.dart';
+import '../../features/home/view_models/main_layout_controller.dart';
 import '../../utils/app_icons/app_icons.dart';
 import '../../utils/app_strings/app_strings.dart';
 import '../custom_text/custom_text.dart';
 import '../../core/app_routes/app_routes.dart';
-import '../../features/main_layout/view_models/main_layout_controller.dart';
 
 class CustomDrawer extends StatelessWidget {
   final String currentRoute;
@@ -18,19 +18,19 @@ class CustomDrawer extends StatelessWidget {
   void _navigateTo(String route) {
     Get.back(); // Close drawer first
     if (currentRoute == route) {
-      if (route == AppRoutes.mainLayoutScreen && Get.isRegistered<MainLayoutController>()) {
+      if (route == AppRoutes.homeScreen && Get.isRegistered<MainLayoutController>()) {
         Get.find<MainLayoutController>().changeTab(0);
       }
       return; 
     }
 
-    if (route == AppRoutes.mainLayoutScreen) {
-      Get.until((r) => r.settings.name == AppRoutes.mainLayoutScreen);
+    if (route == AppRoutes.homeScreen) {
+      Get.until((r) => r.settings.name == AppRoutes.homeScreen);
       if (Get.isRegistered<MainLayoutController>()) {
         Get.find<MainLayoutController>().changeTab(0);
       }
     } else {
-      if (currentRoute == AppRoutes.mainLayoutScreen) {
+      if (currentRoute == AppRoutes.homeScreen) {
         Get.toNamed(route);
       } else {
         Get.offNamed(route);
@@ -88,7 +88,7 @@ class CustomDrawer extends StatelessWidget {
                       SizedBox(width: 6.w),
                       CustomText(
                         text: AppStrings.eliteMember,
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.greyShade,
                       ),
@@ -101,8 +101,8 @@ class CustomDrawer extends StatelessWidget {
             _buildDrawerItem(
               iconPath: AppIcons.homeIcon,
               title: AppStrings.home,
-              isSelected: currentRoute == AppRoutes.mainLayoutScreen,
-              onTap: () => _navigateTo(AppRoutes.mainLayoutScreen),
+              isSelected: currentRoute == AppRoutes.homeScreen,
+              onTap: () => _navigateTo(AppRoutes.homeScreen),
             ),
             _buildDrawerItem(
               iconPath: AppIcons.historyIcon,

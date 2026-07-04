@@ -76,7 +76,7 @@ class ProfileSetupController extends GetxController {
     } else {
       // Done with profile setup
       print("Profile setup complete!");
-      Get.offAllNamed(AppRoutes.mainLayoutScreen);
+      Get.offAllNamed(AppRoutes.homeScreen);
     }
   }
 

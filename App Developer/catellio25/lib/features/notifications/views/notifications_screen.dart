@@ -8,8 +8,8 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../view_models/notifications_controller.dart';
 
-class NotificationsView extends GetView<NotificationsController> {
-  const NotificationsView({super.key});
+class NotificationsScreen extends GetView<NotificationsController> {
+  const NotificationsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

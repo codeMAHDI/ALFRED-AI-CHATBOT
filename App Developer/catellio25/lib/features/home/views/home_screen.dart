@@ -2,41 +2,39 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../view_models/main_layout_controller.dart';
-import '../../home/views/home_view.dart';
-import '../../plans/views/plans_view.dart';
-import '../../calendar/views/calendar_view.dart';
-import '../../calendar/views/calendar_view.dart';
-import '../../discovery/views/discovery_view.dart';
-import '../../profile/views/profile_view.dart';
+import '../widgets/home_tab.dart';
+import '../../plans/views/plans_screen.dart';
+import '../../calendar/views/calendar_screen.dart';
+import '../../discovery/views/discovery_screen.dart';
+import '../../profile/views/profile_screen.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 
-class MainLayoutView extends GetView<MainLayoutController> {
-  const MainLayoutView({super.key});
+class HomeScreen extends GetView<MainLayoutController> {
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: controller.scaffoldKey,
       backgroundColor: AppColors.background,
-      drawer: const CustomDrawer(currentRoute: AppRoutes.mainLayoutScreen),
+      drawer: const CustomDrawer(currentRoute: AppRoutes.homeScreen),
       body: Stack(
         children: [
           // Content
           Obx(() => IndexedStack(
             index: controller.selectedIndex.value,
             children: [
-               HomeView(), // 0: Home
-              const PlansView(), // 1: Plans
-              const DiscoveryView(), // 2: Discovery
-              const CalendarView(isStandalone: false), // 3: Calender
-              const ProfileView(), // 4: Profile
+               HomeTab(), // 0: Home
+              const PlansScreen(), // 1: Plans
+              const DiscoveryScreen(), // 2: Discovery
+              const CalendarScreen(isStandalone: false), // 3: Calender
+              const ProfileScreen(), // 4: Profile
             ],
           )),
           
@@ -50,16 +48,6 @@ class MainLayoutView extends GetView<MainLayoutController> {
     );
   }
 
-  Widget _buildPlaceholder(String title) {
-    return Center(
-      child: CustomText(
-        text: title,
-        fontSize: 24.sp,
-        fontWeight: FontWeight.bold,
-        color: AppColors.greyShade,
-      ),
-    );
-  }
 
   Widget _buildFloatingNavBar() {
     return Container(

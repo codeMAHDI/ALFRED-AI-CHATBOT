@@ -9,8 +9,8 @@ import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart'
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({super.key});
+class ProfileScreen extends GetView<ProfileController> {
+  const ProfileScreen({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -8,8 +8,8 @@ import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../view_models/saved_items_controller.dart';
 
-class SavedItemsView extends GetView<SavedItemsController> {
-  SavedItemsView({super.key});
+class SavedItemsScreen extends GetView<SavedItemsController> {
+  SavedItemsScreen({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
 

@@ -11,10 +11,10 @@ import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../view_models/calendar_controller.dart';
 
-class CalendarView extends GetView<CalendarController> {
+class CalendarScreen extends GetView<CalendarController> {
   final bool isStandalone;
   
-  const CalendarView({super.key, this.isStandalone = true});
+  const CalendarScreen({super.key, this.isStandalone = true});
 
   @override
   Widget build(BuildContext context) {
@@ -117,7 +117,7 @@ class CalendarView extends GetView<CalendarController> {
     return GestureDetector(
       onTap: () {
         if (index != 3) {
-          Get.offAllNamed(AppRoutes.mainLayoutScreen, arguments: {'tab': index});
+          Get.offAllNamed(AppRoutes.homeScreen, arguments: {'tab': index});
         }
       },
       behavior: HitTestBehavior.opaque,
