@@ -34,6 +34,22 @@ import '../../features/discovery_details/bindings/discovery_details_binding.dart
 import '../../features/discovery_details/views/discovery_details_view.dart';
 import '../../features/edit_profile/bindings/edit_profile_binding.dart';
 import '../../features/edit_profile/views/edit_profile_view.dart';
+import '../../features/security_settings/bindings/security_settings_binding.dart';
+import '../../features/security_settings/views/security_settings_view.dart';
+import '../../features/notification_settings/bindings/notification_settings_binding.dart';
+import '../../features/notification_settings/views/notification_settings_view.dart';
+import '../../features/privacy_policy/bindings/privacy_policy_binding.dart';
+import '../../features/privacy_policy/views/privacy_policy_view.dart';
+import '../../features/terms_conditions/bindings/terms_conditions_binding.dart';
+import '../../features/terms_conditions/views/terms_conditions_view.dart';
+import '../../features/date_history/bindings/date_history_binding.dart';
+import '../../features/date_history/views/date_history_view.dart';
+import '../../features/saved_items/bindings/saved_items_binding.dart';
+import '../../features/saved_items/views/saved_items_view.dart';
+import '../../features/premium_voice_store/bindings/premium_voice_store_binding.dart';
+import '../../features/premium_voice_store/views/premium_voice_store_view.dart';
+import '../../features/budget_insights/bindings/budget_insights_binding.dart';
+import '../../features/budget_insights/views/budget_insights_view.dart';
 
 class AppRoutes {
 
@@ -55,6 +71,14 @@ class AppRoutes {
   static const String discoveryScreen = "/discovery_screen";
   static const String discoveryDetailsScreen = "/discovery_details_screen";
   static const String editProfileScreen = "/edit_profile_screen";
+  static const String securitySettingsScreen = "/security_settings_screen";
+  static const String notificationSettingsScreen = "/notification_settings_screen";
+  static const String privacyPolicyScreen = "/privacy_policy_screen";
+  static const String termsConditionsScreen = "/terms_conditions_screen";
+  static const String dateHistoryScreen = "/date_history_screen";
+  static const String savedItemsScreen = "/saved_items_screen";
+  static const String premiumVoiceStoreScreen = "/premium_voice_store_screen";
+  static const String budgetInsightsScreen = "/budget_insights_screen";
 
   /// ==================== SHARED ROUTES (Profile & Chat) ====================
 
@@ -77,5 +101,13 @@ class AppRoutes {
     GetPage(name: discoveryScreen, page: () => const DiscoveryView(), binding: DiscoveryBinding()),
     GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsView(), binding: DiscoveryDetailsBinding()),
     GetPage(name: editProfileScreen, page: () => const EditProfileView(), binding: EditProfileBinding()),
+    GetPage(name: securitySettingsScreen, page: () => const SecuritySettingsView(), binding: SecuritySettingsBinding()),
+    GetPage(name: notificationSettingsScreen, page: () => const NotificationSettingsView(), binding: NotificationSettingsBinding()),
+    GetPage(name: privacyPolicyScreen, page: () => const PrivacyPolicyView(), binding: PrivacyPolicyBinding()),
+    GetPage(name: termsConditionsScreen, page: () => const TermsConditionsView(), binding: TermsConditionsBinding()),
+    GetPage(name: dateHistoryScreen, page: () =>  DateHistoryView(), binding: DateHistoryBinding()),
+    GetPage(name: savedItemsScreen, page: () =>  SavedItemsView(), binding: SavedItemsBinding()),
+    GetPage(name: premiumVoiceStoreScreen, page: () => PremiumVoiceStoreView(), binding: PremiumVoiceStoreBinding()),
+    GetPage(name: budgetInsightsScreen, page: () => BudgetInsightsView(), binding: BudgetInsightsBinding()),
   ];
 }

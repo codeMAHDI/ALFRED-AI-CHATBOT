@@ -11,19 +11,16 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
 import '../view_models/home_view_model.dart';
 import '../../../../core/app_routes/app_routes.dart';
+import '../../main_layout/view_models/main_layout_view_model.dart';
 
 class HomeView extends GetView<HomeViewModel> {
-  HomeView({super.key});
-
-  final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();
+  const HomeView({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: scaffoldKey,
       backgroundColor: AppColors.background,
       appBar: _buildAppBar(),
-      drawer: _buildDrawer(),
       body: SingleChildScrollView(
         padding: EdgeInsets.only(left: 24.w, right: 24.w, top: 16.h, bottom: 120.h),
         child: Column(
@@ -245,7 +242,7 @@ class HomeView extends GetView<HomeViewModel> {
       title: Row(
         children: [
           GestureDetector(
-            onTap: () => scaffoldKey.currentState?.openDrawer(),
+            onTap: () => Get.find<MainLayoutViewModel>().scaffoldKey.currentState?.openDrawer(),
             child: Icon(Icons.menu, color: AppColors.black, size: 28.sp),
           ),
           SizedBox(width: 16.w),
@@ -285,100 +282,6 @@ class HomeView extends GetView<HomeViewModel> {
         ),
         SizedBox(width: 24.w),
       ],
-    );
-  }
-
-  Widget _buildDrawer() {
-    return Drawer(
-      backgroundColor: AppColors.white,
-      child: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(24.w),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  GestureDetector(
-                    onTap: () => Get.back(),
-                    child: Icon(Icons.close, color: AppColors.black, size: 24.sp),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 24.w),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  CircleAvatar(
-                    radius: 32.r,
-                    backgroundColor: AppColors.greyShade.withOpacity(0.2),
-                    child: Icon(Icons.person, color: AppColors.greyShade, size: 40.sp),
-                  ),
-                  SizedBox(height: 16.h),
-                  CustomText(
-                    text: AppStrings.julianThorne,
-                    fontSize: 24.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
-                  ),
-                  SizedBox(height: 8.h),
-                  Row(
-                    children: [
-                      Icon(Icons.stars, color: AppColors.black, size: 14.sp),
-                      SizedBox(width: 6.w),
-                      CustomText(
-                        text: AppStrings.eliteMember,
-                        fontSize: 10.sp,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.greyShade,
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(height: 40.h),
-            _buildDrawerItem(AppIcons.homeIcon, AppStrings.home),
-            _buildDrawerItem(AppIcons.historyIcon, AppStrings.dateHistory),
-            _buildDrawerItem(AppIcons.saveIcon, AppStrings.savedItems),
-            _buildDrawerItem(AppIcons.voiceIcon, AppStrings.premiumVoiceStore),
-            _buildDrawerItem(AppIcons.budgetIcon, AppStrings.budgetInsights),
-          ],
-        ),
-      ),
-    );
-  }
-
-  Widget _buildDrawerItem(String iconPath, String title) {
-    return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 24.w, vertical: 16.h),
-      child: Row(
-        children: [
-          Container(
-            padding: EdgeInsets.all(10.w),
-            decoration: BoxDecoration(
-              color: AppColors.white_50,
-              borderRadius: BorderRadius.circular(12.r),
-            ),
-            child: SvgPicture.asset(
-              iconPath,
-              width: 20.sp,
-              height: 20.sp,
-              colorFilter: const ColorFilter.mode(AppColors.black, BlendMode.srcIn),
-            ),
-          ),
-          SizedBox(width: 16.w),
-          CustomText(
-            text: title,
-            fontSize: 16.sp,
-            fontWeight: FontWeight.w500,
-            color: AppColors.black,
-          ),
-        ],
-      ),
     );
   }
 }

@@ -52,7 +52,7 @@ class ProfileView extends GetView<ProfileViewModel> {
             SizedBox(height: 16.h),
             
             // Sign Out Button
-            _buildSignOutButton(),
+            _buildSignOutButton(context),
             
             SizedBox(height: 120.h), // Bottom nav padding
           ],
@@ -226,13 +226,25 @@ class ProfileView extends GetView<ProfileViewModel> {
       ),
       child: Column(
         children: [
-          _buildMenuItem(Icons.lock_outline, "Security"),
+          GestureDetector(
+            onTap: () => Get.toNamed(AppRoutes.securitySettingsScreen),
+            child: _buildMenuItem(Icons.lock_outline, "Security"),
+          ),
           Divider(height: 1, color: AppColors.greyShade.withOpacity(0.1)),
-          _buildMenuItem(Icons.notifications_none, "Notifications"),
+          GestureDetector(
+            onTap: () => Get.toNamed(AppRoutes.notificationSettingsScreen),
+            child: _buildMenuItem(Icons.notifications_none, "Notifications"),
+          ),
           Divider(height: 1, color: AppColors.greyShade.withOpacity(0.1)),
-          _buildMenuItem(Icons.privacy_tip_outlined, "Privacy Policy"),
+          GestureDetector(
+            onTap: () => Get.toNamed(AppRoutes.privacyPolicyScreen),
+            child: _buildMenuItem(Icons.privacy_tip_outlined, "Privacy Policy"),
+          ),
           Divider(height: 1, color: AppColors.greyShade.withOpacity(0.1)),
-          _buildMenuItem(Icons.description_outlined, "Terms & Conditions"),
+          GestureDetector(
+            onTap: () => Get.toNamed(AppRoutes.termsConditionsScreen),
+            child: _buildMenuItem(Icons.description_outlined, "Terms & Conditions"),
+          ),
         ],
       ),
     );
@@ -259,23 +271,135 @@ class ProfileView extends GetView<ProfileViewModel> {
     );
   }
 
-  Widget _buildSignOutButton() {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(vertical: 16.h),
-      decoration: BoxDecoration(
-        color: Colors.transparent,
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(color: const Color(0xFFFFE5E5)),
-      ),
-      child: Center(
-        child: CustomText(
-          text: "Sign Out",
-          fontSize: 14.sp,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xFFE53935),
+  Widget _buildSignOutButton(BuildContext context) {
+    return GestureDetector(
+      onTap: () => _showSignOutDialog(context),
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(vertical: 16.h),
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(color: const Color(0xFFFFE5E5)),
+        ),
+        child: Center(
+          child: CustomText(
+            text: "Sign Out",
+            fontSize: 14.sp,
+            fontWeight: FontWeight.w500,
+            color: const Color(0xFFE53935),
+          ),
         ),
       ),
+    );
+  }
+
+  void _showSignOutDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      barrierColor: Colors.black.withOpacity(0.5),
+      builder: (BuildContext context) {
+        return Dialog(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: Container(
+            padding: EdgeInsets.all(32.w),
+            decoration: BoxDecoration(
+              color: const Color(0xFFF9F9F9),
+              borderRadius: BorderRadius.circular(24.r),
+            ),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Container(
+                  width: 56.w,
+                  height: 56.w,
+                  decoration: const BoxDecoration(
+                    color: Color(0xFFFBEAEA),
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: Icon(Icons.logout, color: const Color(0xFFE53935), size: 24.sp),
+                  ),
+                ),
+                SizedBox(height: 24.h),
+                CustomText(
+                  text: "Sign Out?",
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.black,
+                ),
+                SizedBox(height: 12.h),
+                CustomText(
+                  text: "Are you sure you want to end your session with Alfred? Your curated itineraries remain safe.",
+                  fontSize: 12.sp,
+                  color: AppColors.greyShade,
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 32.h),
+                GestureDetector(
+                  onTap: () {
+                    Get.back(); // Close dialog
+                    // Add actual sign out logic here, e.g. Get.offAllNamed('/sign_in')
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9F9F9),
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(color: const Color(0xFFEAEAEA)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.02),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: CustomText(
+                        text: "Sign Out",
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: const Color(0xFFE53935),
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 12.h),
+                GestureDetector(
+                  onTap: () => Get.back(),
+                  child: Container(
+                    width: double.infinity,
+                    padding: EdgeInsets.symmetric(vertical: 16.h),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF9F9F9),
+                      borderRadius: BorderRadius.circular(12.r),
+                      border: Border.all(color: const Color(0xFFEAEAEA)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black.withOpacity(0.02),
+                          blurRadius: 4,
+                          offset: const Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                    child: Center(
+                      child: CustomText(
+                        text: "Cancel",
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w500,
+                        color: AppColors.black,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }

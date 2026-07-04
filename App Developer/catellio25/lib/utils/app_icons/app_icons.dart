@@ -34,8 +34,12 @@ class AppIcons {
   static const String budgetIcon = "$basePath/budget.svg";
 
 
-  ///=========================Profile Icons======================
-
+  ///=========================Voice Store Icons======================
+  static const String voiceWaveIcon = "$basePath/voice_icon.svg";
+  static const String playIcon = "$basePath/play.svg";
+  static const String premiumVoiceIcon = "$basePath/premium.svg";
+  static const String executiveVoiceIcon = "$basePath/executive.svg";
+  static const String elegantVoiceIcon = "$basePath/elegant.svg";
 
   ///=========================Nav Bar Icons======================
 

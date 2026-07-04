@@ -11,8 +11,11 @@ import '../view_models/main_layout_view_model.dart';
 import '../../home/views/home_view.dart';
 import '../../plans/views/plans_view.dart';
 import '../../calendar/views/calendar_view.dart';
+import '../../calendar/views/calendar_view.dart';
 import '../../discovery/views/discovery_view.dart';
 import '../../profile/views/profile_view.dart';
+import '../../../../core/app_routes/app_routes.dart';
+import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 
 class MainLayoutView extends GetView<MainLayoutViewModel> {
   const MainLayoutView({super.key});
@@ -20,7 +23,9 @@ class MainLayoutView extends GetView<MainLayoutViewModel> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: controller.scaffoldKey,
       backgroundColor: AppColors.background,
+      drawer: const CustomDrawer(currentRoute: AppRoutes.mainLayoutScreen),
       body: Stack(
         children: [
           // Content
