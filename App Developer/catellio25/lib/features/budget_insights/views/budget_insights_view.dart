@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/budget_insights_view_model.dart';
+import '../view_models/budget_insights_controller.dart';
 
-class BudgetInsightsView extends GetView<BudgetInsightsViewModel> {
+class BudgetInsightsView extends GetView<BudgetInsightsController> {
   BudgetInsightsView({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

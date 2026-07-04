@@ -5,10 +5,10 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
-import '../view_models/alfred_chat_view_model.dart';
+import '../view_models/alfred_chat_controller.dart';
 import '../../../../core/app_routes/app_routes.dart';
 
-class AlfredChatView extends GetView<AlfredChatViewModel> {
+class AlfredChatView extends GetView<AlfredChatController> {
   const AlfredChatView({super.key});
 
   @override

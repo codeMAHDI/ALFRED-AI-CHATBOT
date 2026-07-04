@@ -9,11 +9,11 @@ import '../../../../utils/app_images/app_images.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
-import '../view_models/home_view_model.dart';
+import '../view_models/home_controller.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../../main_layout/view_models/main_layout_view_model.dart';
+import '../../main_layout/view_models/main_layout_controller.dart';
 
-class HomeView extends GetView<HomeViewModel> {
+class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
   @override
@@ -242,7 +242,7 @@ class HomeView extends GetView<HomeViewModel> {
       title: Row(
         children: [
           GestureDetector(
-            onTap: () => Get.find<MainLayoutViewModel>().scaffoldKey.currentState?.openDrawer(),
+            onTap: () => Get.find<MainLayoutController>().scaffoldKey.currentState?.openDrawer(),
             child: Icon(Icons.menu, color: AppColors.black, size: 28.sp),
           ),
           SizedBox(width: 16.w),

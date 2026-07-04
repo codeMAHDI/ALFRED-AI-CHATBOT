@@ -7,7 +7,7 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_icons/app_icons.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
-import '../view_models/main_layout_view_model.dart';
+import '../view_models/main_layout_controller.dart';
 import '../../home/views/home_view.dart';
 import '../../plans/views/plans_view.dart';
 import '../../calendar/views/calendar_view.dart';
@@ -17,7 +17,7 @@ import '../../profile/views/profile_view.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 
-class MainLayoutView extends GetView<MainLayoutViewModel> {
+class MainLayoutView extends GetView<MainLayoutController> {
   const MainLayoutView({super.key});
 
   @override

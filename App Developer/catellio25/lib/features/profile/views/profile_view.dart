@@ -7,9 +7,9 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/profile_view_model.dart';
+import '../view_models/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileViewModel> {
+class ProfileView extends GetView<ProfileController> {
   const ProfileView({super.key});
 
   @override

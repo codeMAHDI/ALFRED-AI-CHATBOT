@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
-import '../view_models/privacy_policy_view_model.dart';
+import '../view_models/privacy_policy_controller.dart';
 
-class PrivacyPolicyView extends GetView<PrivacyPolicyViewModel> {
+class PrivacyPolicyView extends GetView<PrivacyPolicyController> {
   const PrivacyPolicyView({super.key});
 
   @override

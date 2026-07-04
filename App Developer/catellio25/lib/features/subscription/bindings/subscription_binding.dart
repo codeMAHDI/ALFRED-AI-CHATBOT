@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import '../view_models/subscription_view_model.dart';
+import '../view_models/subscription_controller.dart';
 
 class SubscriptionBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<SubscriptionViewModel>(() => SubscriptionViewModel());
+    Get.lazyPut<SubscriptionController>(() => SubscriptionController());
   }
 }

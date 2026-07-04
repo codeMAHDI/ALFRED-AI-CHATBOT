@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_button/custom_button.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
-import '../view_models/onboarding_view_model.dart';
+import '../view_models/onboarding_controller.dart';
 
-class OnboardingBottomSection extends GetView<OnboardingViewModel> {
+class OnboardingBottomSection extends GetView<OnboardingController> {
   const OnboardingBottomSection({super.key});
 
   @override

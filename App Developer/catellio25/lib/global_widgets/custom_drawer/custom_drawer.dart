@@ -8,7 +8,7 @@ import '../../utils/app_icons/app_icons.dart';
 import '../../utils/app_strings/app_strings.dart';
 import '../custom_text/custom_text.dart';
 import '../../core/app_routes/app_routes.dart';
-import '../../features/main_layout/view_models/main_layout_view_model.dart';
+import '../../features/main_layout/view_models/main_layout_controller.dart';
 
 class CustomDrawer extends StatelessWidget {
   final String currentRoute;
@@ -18,16 +18,16 @@ class CustomDrawer extends StatelessWidget {
   void _navigateTo(String route) {
     Get.back(); // Close drawer first
     if (currentRoute == route) {
-      if (route == AppRoutes.mainLayoutScreen && Get.isRegistered<MainLayoutViewModel>()) {
-        Get.find<MainLayoutViewModel>().changeTab(0);
+      if (route == AppRoutes.mainLayoutScreen && Get.isRegistered<MainLayoutController>()) {
+        Get.find<MainLayoutController>().changeTab(0);
       }
       return; 
     }
 
     if (route == AppRoutes.mainLayoutScreen) {
       Get.until((r) => r.settings.name == AppRoutes.mainLayoutScreen);
-      if (Get.isRegistered<MainLayoutViewModel>()) {
-        Get.find<MainLayoutViewModel>().changeTab(0);
+      if (Get.isRegistered<MainLayoutController>()) {
+        Get.find<MainLayoutController>().changeTab(0);
       }
     } else {
       if (currentRoute == AppRoutes.mainLayoutScreen) {

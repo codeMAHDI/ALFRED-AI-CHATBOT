@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import '../view_models/plan_details_view_model.dart';
+import '../view_models/plan_details_controller.dart';
 
 class PlanDetailsBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<PlanDetailsViewModel>(() => PlanDetailsViewModel());
+    Get.lazyPut<PlanDetailsController>(() => PlanDetailsController());
   }
 }

@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/saved_items_view_model.dart';
+import '../view_models/saved_items_controller.dart';
 
-class SavedItemsView extends GetView<SavedItemsViewModel> {
+class SavedItemsView extends GetView<SavedItemsController> {
   SavedItemsView({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

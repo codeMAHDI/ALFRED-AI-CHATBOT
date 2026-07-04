@@ -3,12 +3,12 @@ import '../../features/splash/bindings/splash_binding.dart';
 import '../../features/splash/views/splash_screen.dart';
 import '../../features/onboarding/bindings/onboarding_binding.dart';
 import '../../features/onboarding/views/onboarding_screen.dart';
-import '../../features/auth/sign_in/bindings/sign_in_binding.dart';
-import '../../features/auth/sign_in/views/sign_in_view.dart';
-import '../../features/auth/sign_up/bindings/sign_up_binding.dart';
-import '../../features/auth/sign_up/views/sign_up_view.dart';
-import '../../features/auth/otp/bindings/otp_binding.dart';
-import '../../features/auth/otp/views/otp_view.dart';
+import '../../features/auth/bindings/auth_binding.dart';
+import '../../features/auth/views/auth_screen.dart';
+import '../../features/auth/views/sign_up_screen.dart';
+import '../../features/auth/views/verify_otp_screen.dart';
+import '../../features/auth/views/forgot_password_screen.dart';
+import '../../features/auth/views/set_new_password_screen.dart';
 import '../../features/profile_setup/bindings/profile_setup_binding.dart';
 import '../../features/profile_setup/views/profile_setup_view.dart';
 import '../../features/main_layout/bindings/main_layout_binding.dart';
@@ -54,9 +54,11 @@ class AppRoutes {
 
   static const String splashScreen = "/splash_screen";
   static const String onboardingScreen = "/onboarding_screen";
-  static const String signInScreen = "/sign_in_screen";
+  static const String authScreen = "/auth_screen";
   static const String signUpScreen = "/sign_up_screen";
-  static const String otpScreen = "/otp_screen";
+  static const String verifyOtpScreen = "/verify_otp_screen";
+  static const String forgotPasswordScreen = "/forgot_password_screen";
+  static const String setNewPasswordScreen = "/set_new_password_screen";
   static const String profileSetupScreen = "/profile_setup_screen";
   static const String mainLayoutScreen = "/main_layout_screen";
   static const String subscriptionScreen = "/subscription_screen";
@@ -82,9 +84,11 @@ class AppRoutes {
   static List<GetPage> routes = [
     GetPage(name: splashScreen, page: () => const SplashScreen(), binding: SplashBinding()),
     GetPage(name: onboardingScreen, page: () => const OnboardingScreen(), binding: OnboardingBinding()),
-    GetPage(name: signInScreen, page: () => const SignInView(), binding: SignInBinding()),
-    GetPage(name: signUpScreen, page: () => const SignUpView(), binding: SignUpBinding()),
-    GetPage(name: otpScreen, page: () => const OtpView(), binding: OtpBinding()),
+    GetPage(name: authScreen, page: () => const AuthScreen(), binding: AuthBinding()),
+    GetPage(name: signUpScreen, page: () => const SignUpScreen(), binding: AuthBinding()),
+    GetPage(name: verifyOtpScreen, page: () => const VerifyOtpScreen(), binding: AuthBinding()),
+    GetPage(name: forgotPasswordScreen, page: () => const ForgotPasswordScreen(), binding: AuthBinding()),
+    GetPage(name: setNewPasswordScreen, page: () => const SetNewPasswordScreen(), binding: AuthBinding()),
     GetPage(name: profileSetupScreen, page: () => const ProfileSetupView(), binding: ProfileSetupBinding()),
     GetPage(name: mainLayoutScreen, page: () => const MainLayoutView(), binding: MainLayoutBinding()),
     GetPage(name: subscriptionScreen, page: () => const SubscriptionView(), binding: SubscriptionBinding()),

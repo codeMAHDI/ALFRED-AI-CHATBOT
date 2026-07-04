@@ -7,9 +7,9 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/discovery_view_model.dart';
+import '../view_models/discovery_controller.dart';
 
-class DiscoveryView extends GetView<DiscoveryViewModel> {
+class DiscoveryView extends GetView<DiscoveryController> {
   const DiscoveryView({super.key});
 
   @override

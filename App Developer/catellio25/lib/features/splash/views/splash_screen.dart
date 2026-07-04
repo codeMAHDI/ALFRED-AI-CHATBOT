@@ -5,7 +5,7 @@ import '../../../core/theme/app_colors.dart';
 import '../../../utils/app_strings/app_strings.dart';
 import '../../../utils/app_icons/app_icons.dart';
 import '../../../global_widgets/custom_image/custom_image.dart';
-import '../view_models/splash_view_model.dart';
+import '../view_models/splash_controller.dart';
 import '../../../global_widgets/custom_text/custom_text.dart';
 
 class SplashScreen extends GetView<SplashController> {

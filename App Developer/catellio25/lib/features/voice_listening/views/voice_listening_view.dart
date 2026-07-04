@@ -8,9 +8,9 @@ import '../../../../utils/app_images/app_images.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../../../../global_widgets/animated_sparking_orb/animated_sparking_orb.dart';
-import '../view_models/voice_listening_view_model.dart';
+import '../view_models/voice_listening_controller.dart';
 
-class VoiceListeningView extends GetView<VoiceListeningViewModel> {
+class VoiceListeningView extends GetView<VoiceListeningController> {
   const VoiceListeningView({super.key});
 
   @override

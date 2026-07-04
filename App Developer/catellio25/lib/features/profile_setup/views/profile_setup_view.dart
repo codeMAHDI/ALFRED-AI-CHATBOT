@@ -10,9 +10,9 @@ import '../../../../utils/app_images/app_images.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_text_field/custom_text_field.dart';
 import '../../../../global_widgets/custom_button/custom_button.dart';
-import '../view_models/profile_setup_view_model.dart';
+import '../view_models/profile_setup_controller.dart';
 
-class ProfileSetupView extends GetView<ProfileSetupViewModel> {
+class ProfileSetupView extends GetView<ProfileSetupController> {
   const ProfileSetupView({super.key});
 
   @override

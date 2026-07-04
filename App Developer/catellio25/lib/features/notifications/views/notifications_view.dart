@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
-import '../view_models/notifications_view_model.dart';
+import '../view_models/notifications_controller.dart';
 
-class NotificationsView extends GetView<NotificationsViewModel> {
+class NotificationsView extends GetView<NotificationsController> {
   const NotificationsView({super.key});
 
   @override

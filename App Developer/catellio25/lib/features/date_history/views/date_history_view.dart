@@ -6,9 +6,9 @@ import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_drawer/custom_drawer.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/date_history_view_model.dart';
+import '../view_models/date_history_controller.dart';
 
-class DateHistoryView extends GetView<DateHistoryViewModel> {
+class DateHistoryView extends GetView<DateHistoryController> {
   DateHistoryView({super.key});
 
   final GlobalKey<ScaffoldState> scaffoldKey = GlobalKey<ScaffoldState>();

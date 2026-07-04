@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
-import '../view_models/terms_conditions_view_model.dart';
+import '../view_models/terms_conditions_controller.dart';
 
-class TermsConditionsView extends GetView<TermsConditionsViewModel> {
+class TermsConditionsView extends GetView<TermsConditionsController> {
   const TermsConditionsView({super.key});
 
   @override

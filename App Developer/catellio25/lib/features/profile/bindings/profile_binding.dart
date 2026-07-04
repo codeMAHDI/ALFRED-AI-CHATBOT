@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import '../view_models/profile_view_model.dart';
+import '../view_models/profile_controller.dart';
 
 class ProfileBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<ProfileViewModel>(() => ProfileViewModel());
+    Get.lazyPut<ProfileController>(() => ProfileController());
   }
 }
