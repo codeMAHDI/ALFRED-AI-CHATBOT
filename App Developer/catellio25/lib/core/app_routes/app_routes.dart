@@ -31,15 +31,11 @@ import '../../features/discovery/bindings/discovery_binding.dart';
 import '../../features/discovery/views/discovery_screen.dart';
 import '../../features/discovery_details/bindings/discovery_details_binding.dart';
 import '../../features/discovery_details/views/discovery_details_screen.dart';
-import '../../features/profile/bindings/edit_profile_binding.dart';
+import '../../features/profile/bindings/profile_binding.dart';
 import '../../features/profile/views/edit_profile_screen.dart';
-import '../../features/profile/bindings/security_settings_binding.dart';
 import '../../features/profile/views/security_settings_screen.dart';
-import '../../features/profile/bindings/notification_settings_binding.dart';
 import '../../features/profile/views/notification_settings_screen.dart';
-import '../../features/profile/bindings/privacy_policy_binding.dart';
 import '../../features/profile/views/privacy_policy_screen.dart';
-import '../../features/profile/bindings/terms_conditions_binding.dart';
 import '../../features/profile/views/terms_conditions_screen.dart';
 import '../../features/date_history/bindings/date_history_binding.dart';
 import '../../features/date_history/views/date_history_screen.dart';
@@ -100,11 +96,11 @@ class AppRoutes {
     GetPage(name: calendarScreen, page: () => const CalendarScreen(), binding: CalendarBinding()),
     GetPage(name: discoveryScreen, page: () => const DiscoveryScreen(), binding: DiscoveryBinding()),
     GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsScreen(), binding: DiscoveryDetailsBinding()),
-    GetPage(name: editProfileScreen, page: () => const EditProfileScreen(), binding: EditProfileBinding()),
-    GetPage(name: securitySettingsScreen, page: () => const SecuritySettingsScreen(), binding: SecuritySettingsBinding()),
-    GetPage(name: notificationSettingsScreen, page: () => const NotificationSettingsScreen(), binding: NotificationSettingsBinding()),
-    GetPage(name: privacyPolicyScreen, page: () => const PrivacyPolicyScreen(), binding: PrivacyPolicyBinding()),
-    GetPage(name: termsConditionsScreen, page: () => const TermsConditionsScreen(), binding: TermsConditionsBinding()),
+    GetPage(name: editProfileScreen, page: () => const EditProfileScreen(), binding: ProfileBinding()),
+    GetPage(name: securitySettingsScreen, page: () => const SecuritySettingsScreen(), binding: ProfileBinding()),
+    GetPage(name: notificationSettingsScreen, page: () => const NotificationSettingsScreen(), binding: ProfileBinding()),
+    GetPage(name: privacyPolicyScreen, page: () => const PrivacyPolicyScreen(), binding: ProfileBinding()),
+    GetPage(name: termsConditionsScreen, page: () => const TermsConditionsScreen(), binding: ProfileBinding()),
     GetPage(name: dateHistoryScreen, page: () =>  DateHistoryScreen(), binding: DateHistoryBinding()),
     GetPage(name: savedItemsScreen, page: () =>  SavedItemsScreen(), binding: SavedItemsBinding()),
     GetPage(name: premiumVoiceStoreScreen, page: () => PremiumVoiceStoreScreen(), binding: PremiumVoiceStoreBinding()),

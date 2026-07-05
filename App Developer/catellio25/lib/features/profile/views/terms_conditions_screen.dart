@@ -5,9 +5,9 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
-import '../view_models/terms_conditions_controller.dart';
+import '../view_models/profile_controller.dart';
 
-class TermsConditionsScreen extends GetView<TermsConditionsController> {
+class TermsConditionsScreen extends GetView<ProfileController> {
   const TermsConditionsScreen({super.key});
 
   @override

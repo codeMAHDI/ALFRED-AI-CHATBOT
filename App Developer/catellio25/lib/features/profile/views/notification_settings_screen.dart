@@ -6,9 +6,9 @@ import 'package:get/get.dart';
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
-import '../view_models/notification_settings_controller.dart';
+import '../view_models/profile_controller.dart';
 
-class NotificationSettingsScreen extends GetView<NotificationSettingsController> {
+class NotificationSettingsScreen extends GetView<ProfileController> {
   const NotificationSettingsScreen({super.key});
 
   @override
