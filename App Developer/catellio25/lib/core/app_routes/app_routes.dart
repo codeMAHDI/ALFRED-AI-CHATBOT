@@ -32,7 +32,6 @@ import '../../features/discovery/views/discovery_details_screen.dart';
 import '../../features/profile/bindings/profile_binding.dart';
 import '../../features/profile/views/edit_profile_screen.dart';
 import '../../features/profile/views/security_settings_screen.dart';
-import '../../features/profile/views/notification_settings_screen.dart';
 import '../../features/profile/views/privacy_policy_screen.dart';
 import '../../features/profile/views/terms_conditions_screen.dart';
 import '../../features/date_history/bindings/date_history_binding.dart';
@@ -66,7 +65,6 @@ class AppRoutes {
   static const String discoveryDetailsScreen = "/discovery_details_screen";
   static const String editProfileScreen = "/edit_profile_screen";
   static const String securitySettingsScreen = "/security_settings_screen";
-  static const String notificationSettingsScreen = "/notification_settings_screen";
   static const String privacyPolicyScreen = "/privacy_policy_screen";
   static const String termsConditionsScreen = "/terms_conditions_screen";
   static const String dateHistoryScreen = "/date_history_screen";
@@ -96,7 +94,6 @@ class AppRoutes {
     GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsScreen(), binding: DiscoveryBinding()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen(), binding: ProfileBinding()),
     GetPage(name: securitySettingsScreen, page: () => const SecuritySettingsScreen(), binding: ProfileBinding()),
-    GetPage(name: notificationSettingsScreen, page: () => const NotificationSettingsScreen(), binding: ProfileBinding()),
     GetPage(name: privacyPolicyScreen, page: () => const PrivacyPolicyScreen(), binding: ProfileBinding()),
     GetPage(name: termsConditionsScreen, page: () => const TermsConditionsScreen(), binding: ProfileBinding()),
     GetPage(name: dateHistoryScreen, page: () =>  DateHistoryScreen(), binding: DateHistoryBinding()),
