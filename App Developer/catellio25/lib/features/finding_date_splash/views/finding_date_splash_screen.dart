@@ -24,8 +24,10 @@ class FindingDateSplashScreen extends GetView<FindingDateSplashController> {
             Center(
               child: AnimatedSparkingOrb(
                 imagePath: AppImages.orbImage,
+                lottieSparkPath: 'assets/lottie/alfred_2.json', // The thinking wave
                 width: 260.w,
                 height: 260.w,
+                isListening: false,
               ),
             ),
             SizedBox(height: 40.h),
