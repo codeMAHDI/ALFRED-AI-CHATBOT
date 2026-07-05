@@ -11,6 +11,7 @@ class AuthController extends GetxController {
   // OTP fields
   final otpController = ''.obs;
   var otpEmail = ''.obs;
+  var isForgotPasswordFlow = false.obs;
 
   var isPasswordVisible = false.obs;
   var isConfirmPasswordVisible = false.obs;
@@ -37,6 +38,12 @@ class AuthController extends GetxController {
   }
 
   void createAccount() {
+    isForgotPasswordFlow.value = false;
+    Get.toNamed(AppRoutes.verifyOtpScreen, arguments: emailController.value);
+  }
+
+  void forgotPassword() {
+    isForgotPasswordFlow.value = true;
     Get.toNamed(AppRoutes.verifyOtpScreen, arguments: emailController.value);
   }
 
@@ -50,7 +57,11 @@ class AuthController extends GetxController {
 
   void verifyOtp() {
     print("Verifying OTP: ${otpController.value}");
-    Get.offAllNamed(AppRoutes.authScreen);
+    if (isForgotPasswordFlow.value) {
+      Get.toNamed(AppRoutes.setNewPasswordScreen);
+    } else {
+      Get.offAllNamed(AppRoutes.authScreen);
+    }
   }
 
   void resendOtp() {

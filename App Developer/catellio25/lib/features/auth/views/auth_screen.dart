@@ -95,6 +95,19 @@ class AuthScreen extends GetView<AuthController> {
               isPassword: true,
               onChanged: (val) => controller.passwordController.value = val,
             ),
+            SizedBox(height: 12.h),
+            Align(
+              alignment: Alignment.centerRight,
+              child: CustomButton(
+                onTap: controller.forgotPassword,
+                title: "Forget Password...",
+                height: 30.h,
+                width: 140.w,
+                fillColor: Colors.transparent,
+                textColor: AppColors.black,
+                fontSize: 12.sp,
+              ),
+            ),
             SizedBox(height: 30.h),
 
             // Sign In Button
