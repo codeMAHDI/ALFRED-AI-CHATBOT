@@ -1,4 +1,7 @@
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 
 class ChatMessage {
   final String text;
@@ -18,6 +21,7 @@ class AlfredChatController extends GetxController {
   ].obs;
 
   final TextEditingController textController = TextEditingController();
+  final ImagePicker _picker = ImagePicker();
 
   void sendMessage() {
     if (textController.text.trim().isNotEmpty) {
@@ -28,6 +32,23 @@ class AlfredChatController extends GetxController {
       Future.delayed(const Duration(seconds: 1), () {
         messages.add(ChatMessage(text: "I'll look into that for you.", isUser: false));
       });
+    }
+  }
+
+  Future<void> pickMedia() async {
+    try {
+      final XFile? media = await _picker.pickMedia();
+      if (media != null) {
+        // Send a dummy message indicating a file was uploaded
+        messages.add(ChatMessage(text: "📎 Sent a file: ${media.name}", isUser: true));
+        
+        // Simulate bot reply
+        Future.delayed(const Duration(seconds: 1), () {
+          messages.add(ChatMessage(text: "I've received your file. What would you like me to do with it?", isUser: false));
+        });
+      }
+    } catch (e) {
+      debugPrint("Error picking media: $e");
     }
   }
 

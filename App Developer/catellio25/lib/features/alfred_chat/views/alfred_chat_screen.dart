@@ -148,9 +148,7 @@ class AlfredChatScreen extends GetView<AlfredChatController> {
             child: Row(
               children: [
                 GestureDetector(
-                  onTap: () {
-                    // TODO: Implement file upload
-                  },
+                  onTap: () => controller.pickMedia(),
                   child: Icon(Icons.attach_file, color: AppColors.greyShade, size: 20.sp),
                 ),
                 SizedBox(width: 12.w),
