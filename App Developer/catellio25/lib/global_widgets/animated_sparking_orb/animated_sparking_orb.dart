@@ -86,13 +86,16 @@ class _AnimatedSparkingOrbState extends State<AnimatedSparkingOrb> with SingleTi
           
           // Lottie spark layer or Fallback
           if (widget.lottieSparkPath != null)
-            Lottie.asset(
-              widget.lottieSparkPath!,
-              width: widget.width,
-              height: widget.height,
-              fit: BoxFit.contain,
-              animate: !widget.isListening,
-              repeat: true,
+            Transform.scale(
+              scale: 0.75, // Scale down the wave so it stays inside the circle
+              child: Lottie.asset(
+                widget.lottieSparkPath!,
+                width: widget.width,
+                height: widget.height,
+                fit: BoxFit.contain,
+                animate: !widget.isListening,
+                repeat: true,
+              ),
             )
           else
             AnimatedBuilder(
