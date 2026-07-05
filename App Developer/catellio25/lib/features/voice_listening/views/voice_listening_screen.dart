@@ -26,22 +26,38 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
         child: Column(
           children: [
             SizedBox(height: 60.h),
-            Center(
-              child: AnimatedSparkingOrb(
-                imagePath: AppImages.orbImage,
-                lottieSparkPath: 'assets/lottie/alfred_2.json',
-                width: 260.w,
-                height: 260.w,
-                isListening: false, // Let the listening wave animate
-              ),
-            ),
-            SizedBox(height: 40.h),
-            CustomText(
-              text: AppStrings.listening,
-              fontSize: 24.sp,
-              fontWeight: FontWeight.bold,
-              color: AppColors.black,
-            ),
+            Obx(() {
+              String lottiePath = 'assets/lottie/alfred_2.json';
+              String stateText = AppStrings.listening;
+              
+              if (controller.currentState.value == VoiceBotState.thinking) {
+                stateText = 'Thinking...'; // You can move this to AppStrings later
+              } else if (controller.currentState.value == VoiceBotState.speaking) {
+                lottiePath = 'assets/lottie/spark.json';
+                stateText = 'Speaking...';
+              }
+
+              return Column(
+                children: [
+                  Center(
+                    child: AnimatedSparkingOrb(
+                      imagePath: AppImages.orbImage,
+                      lottieSparkPath: lottiePath,
+                      width: 260.w,
+                      height: 260.w,
+                      isListening: false,
+                    ),
+                  ),
+                  SizedBox(height: 40.h),
+                  CustomText(
+                    text: stateText,
+                    fontSize: 24.sp,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.black,
+                  ),
+                ],
+              );
+            }),
             SizedBox(height: 20.h),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 40.w),
