@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../utils/app_images/app_images.dart';
@@ -27,7 +26,7 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
           children: [
             SizedBox(height: 60.h),
             Obx(() {
-              String lottiePath = 'assets/lottie/spark.json'; // Default for idle
+              String lottiePath = 'assets/lottie/spark.json';
               String stateText = 'Tap and hold to speak';
               
               if (controller.currentState.value == VoiceBotState.listening) {
@@ -82,7 +81,7 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
                 child: AnimatedScale(
                   scale: isRecording ? 1.15 : 1.0,
                   duration: const Duration(milliseconds: 300),
-                  curve: Curves.easeOutBack, // Gives a premium bouncy pop effect
+                  curve: Curves.easeOutBack,
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 300),
                     padding: EdgeInsets.all(24.w),
@@ -92,7 +91,7 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
                       boxShadow: [
                         if (isRecording)
                           BoxShadow(
-                            color: const Color(0xFFF39C12).withOpacity(0.6), // Beautiful golden glow
+                            color: const Color(0xFFF39C12).withOpacity(0.6),
                             blurRadius: 40,
                             spreadRadius: 10,
                             offset: const Offset(0, 0),

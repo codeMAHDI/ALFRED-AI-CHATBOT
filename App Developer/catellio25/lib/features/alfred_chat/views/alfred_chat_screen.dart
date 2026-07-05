@@ -147,24 +147,45 @@ class AlfredChatScreen extends GetView<AlfredChatController> {
             ),
             child: Row(
               children: [
-                Icon(Icons.attach_file, color: AppColors.greyShade, size: 20.sp),
+                GestureDetector(
+                  onTap: () {
+                    // TODO: Implement file upload
+                  },
+                  child: Icon(Icons.attach_file, color: AppColors.greyShade, size: 20.sp),
+                ),
                 SizedBox(width: 12.w),
                 Expanded(
-                  child: CustomText(
-                    text: AppStrings.messageAlfred,
-                    fontSize: 14.sp,
-                    color: AppColors.greyShade.withOpacity(0.5),
+                  child: TextField(
+                    controller: controller.textController,
+                    style: TextStyle(fontSize: 14.sp, color: AppColors.black),
+                    decoration: InputDecoration(
+                      hintText: AppStrings.messageAlfred,
+                      hintStyle: TextStyle(
+                        fontSize: 14.sp,
+                        color: AppColors.greyShade.withOpacity(0.5),
+                      ),
+                      border: InputBorder.none,
+                      isDense: true,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    onSubmitted: (_) => controller.sendMessage(),
                   ),
                 ),
-                Icon(Icons.mic_none, color: AppColors.greyShade, size: 20.sp),
+                GestureDetector(
+                  onTap: () => Get.toNamed(AppRoutes.voiceListeningScreen),
+                  child: Icon(Icons.mic_none, color: AppColors.greyShade, size: 20.sp),
+                ),
                 SizedBox(width: 12.w),
-                Container(
-                  padding: EdgeInsets.all(8.w),
-                  decoration: const BoxDecoration(
-                    color: AppColors.black,
-                    shape: BoxShape.circle,
+                GestureDetector(
+                  onTap: () => controller.sendMessage(),
+                  child: Container(
+                    padding: EdgeInsets.all(8.w),
+                    decoration: const BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(Icons.arrow_upward, color: AppColors.white, size: 16.sp),
                   ),
-                  child: Icon(Icons.arrow_upward, color: AppColors.white, size: 16.sp),
                 ),
               ],
             ),

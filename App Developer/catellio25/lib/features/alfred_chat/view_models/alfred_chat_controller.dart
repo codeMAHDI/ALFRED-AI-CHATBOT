@@ -16,4 +16,24 @@ class AlfredChatController extends GetxController {
     ChatMessage(text: "Around \$150.", isUser: true),
     ChatMessage(text: "Checking your calendar and finding the perfect plan...", isUser: false),
   ].obs;
+
+  final TextEditingController textController = TextEditingController();
+
+  void sendMessage() {
+    if (textController.text.trim().isNotEmpty) {
+      messages.add(ChatMessage(text: textController.text.trim(), isUser: true));
+      textController.clear();
+      
+      // Simulate bot reply
+      Future.delayed(const Duration(seconds: 1), () {
+        messages.add(ChatMessage(text: "I'll look into that for you.", isUser: false));
+      });
+    }
+  }
+
+  @override
+  void onClose() {
+    textController.dispose();
+    super.onClose();
+  }
 }
