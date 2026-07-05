@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../../core/theme/app_colors.dart';
 import '../../../utils/app_strings/app_strings.dart';
 import '../../../global_widgets/custom_text/custom_text.dart';
@@ -43,14 +42,14 @@ class PlansScreen extends GetView<PlansController> {
           children: [
             CustomText(
               text: AppStrings.recommendedDateIdeas,
-              fontSize: 24.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.black,
             ),
             SizedBox(height: 8.h),
             CustomText(
               text: AppStrings.handpickedExperiences,
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.greyShade,
             ),
             SizedBox(height: 32.h),
@@ -109,7 +108,7 @@ class PlansScreen extends GetView<PlansController> {
             ),
             child: Image.network(
               imageUrl,
-              height: 180.h,
+              height: 200.h,
               width: double.infinity,
               fit: BoxFit.cover,
               errorBuilder: (context, error, stackTrace) => Container(
@@ -151,7 +150,8 @@ class PlansScreen extends GetView<PlansController> {
                 SizedBox(height: 12.h),
                 CustomText(
                   text: description,
-                  fontSize: 14.sp,
+                  fontSize: 16.sp,
+                  maxLines: 7,
                   color: AppColors.greyShade,
                 ),
                 SizedBox(height: 24.h),

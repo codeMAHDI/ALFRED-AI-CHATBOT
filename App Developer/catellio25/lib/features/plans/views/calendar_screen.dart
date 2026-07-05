@@ -22,7 +22,7 @@ class CalendarScreen extends GetView<PlansController> {
       backgroundColor: AppColors.background,
       appBar: CustomRoyelAppbar(
         titleName: AppStrings.calender, 
-        leftIcon: isStandalone, // Only show back button if standalone
+        leftIcon: isStandalone,
         titleColor: AppColors.black,
         actionWidget: CircleAvatar(
           radius: 16.r,
@@ -278,14 +278,14 @@ class CalendarScreen extends GetView<PlansController> {
         children: [
           CustomText(
             text: time,
-            fontSize: 10.sp,
+            fontSize: 12.sp,
             fontWeight: FontWeight.bold,
             color: AppColors.greyShade,
           ),
           SizedBox(height: 8.h),
           CustomText(
             text: title,
-            fontSize: 16.sp,
+            fontSize: 18.sp,
             fontWeight: FontWeight.bold,
             color: AppColors.black,
           ),
@@ -325,7 +325,7 @@ class CalendarScreen extends GetView<PlansController> {
               SizedBox(width: 8.w),
               CustomText(
                 text: "INTELLIGENCE",
-                fontSize: 10.sp,
+                fontSize: 12.sp,
                 fontWeight: FontWeight.bold,
                 color: AppColors.white.withOpacity(0.5),
               ),
@@ -335,6 +335,7 @@ class CalendarScreen extends GetView<PlansController> {
           CustomText(
             text: "Friday night is open. Would you like a curated Jazz evening at The Blue Room?",
             fontSize: 16.sp,
+            maxLines: 10,
             color: AppColors.white.withOpacity(0.9),
           ),
           SizedBox(height: 24.h),

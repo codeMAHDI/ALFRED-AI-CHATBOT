@@ -28,21 +28,21 @@ class PlanDetailsScreen extends GetView<PlansController> {
           children: [
             CustomText(
               text: AppStrings.planDay,
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.greyShade.withOpacity(0.8),
             ),
             SizedBox(height: 4.h),
             CustomText(
               text: AppStrings.planDate,
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.greyShade.withOpacity(0.8),
             ),
             SizedBox(height: 12.h),
             CustomText(
               text: AppStrings.yourPerfectDate,
-              fontSize: 24.sp,
+              fontSize: 28.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.black,
             ),
@@ -128,9 +128,9 @@ class PlanDetailsScreen extends GetView<PlansController> {
                     children: [
                       CustomText(
                         text: AppStrings.estimatedCost,
-                        fontSize: 10.sp,
+                        fontSize: 12.sp,
                         fontWeight: FontWeight.bold,
-                        color: AppColors.greyShade.withOpacity(0.6),
+                        color: AppColors.white.withOpacity(0.6),
                       ),
                       SizedBox(height: 4.h),
                       CustomText(
@@ -154,8 +154,9 @@ class PlanDetailsScreen extends GetView<PlansController> {
                         SizedBox(width: 6.w),
                         CustomText(
                           text: AppStrings.basedOnRecentAverages,
-                          fontSize: 10.sp,
-                          color: AppColors.greyShade,
+                          fontSize: 12.sp,
+                          color: AppColors.white.withOpacity(0.6),
+
                         ),
                       ],
                     ),
@@ -273,14 +274,14 @@ class PlanDetailsScreen extends GetView<PlansController> {
                 children: [
                   CustomText(
                     text: time,
-                    fontSize: 10.sp,
+                    fontSize: 12.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.greyShade,
                   ),
                   SizedBox(height: 4.h),
                   CustomText(
                     text: title,
-                    fontSize: 18.sp,
+                    fontSize: 20.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
                   ),
@@ -300,7 +301,8 @@ class PlanDetailsScreen extends GetView<PlansController> {
                     ),
                     child: CustomText(
                       text: description,
-                      fontSize: 14.sp,
+                      fontSize: 16.sp,
+                      maxLines: 10,
                       color: AppColors.greyShade,
                      
                     ),
