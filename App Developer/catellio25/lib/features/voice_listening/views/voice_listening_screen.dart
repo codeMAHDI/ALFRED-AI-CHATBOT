@@ -27,11 +27,15 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
           children: [
             SizedBox(height: 60.h),
             Obx(() {
-              String lottiePath = 'assets/lottie/alfred_2.json';
-              String stateText = AppStrings.listening;
+              String lottiePath = 'assets/lottie/spark.json'; // Default for idle
+              String stateText = 'Tap and hold to speak';
               
-              if (controller.currentState.value == VoiceBotState.thinking) {
-                stateText = 'Thinking...'; // You can move this to AppStrings later
+              if (controller.currentState.value == VoiceBotState.listening) {
+                lottiePath = 'assets/lottie/alfred_2.json';
+                stateText = AppStrings.listening;
+              } else if (controller.currentState.value == VoiceBotState.thinking) {
+                lottiePath = 'assets/lottie/alfred_2.json';
+                stateText = 'Thinking...';
               } else if (controller.currentState.value == VoiceBotState.speaking) {
                 lottiePath = 'assets/lottie/spark.json';
                 stateText = 'Speaking...';
@@ -70,7 +74,9 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
             ),
             const Spacer(),
             GestureDetector(
-              onTap: controller.onMicTapped,
+              onTapDown: (_) => controller.startListening(),
+              onTapUp: (_) => controller.stopListening(),
+              onTapCancel: () => controller.stopListening(),
               child: Container(
                 padding: EdgeInsets.all(24.w),
                 decoration: BoxDecoration(

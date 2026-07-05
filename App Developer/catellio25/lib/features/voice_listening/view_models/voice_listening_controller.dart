@@ -1,18 +1,23 @@
 import 'package:get/get.dart';
 
-enum VoiceBotState { listening, thinking, speaking }
+enum VoiceBotState { idle, listening, thinking, speaking }
 
 class VoiceListeningController extends GetxController {
-  final Rx<VoiceBotState> currentState = VoiceBotState.listening.obs;
+  final Rx<VoiceBotState> currentState = VoiceBotState.idle.obs;
 
   @override
   void onInit() {
     super.onInit();
   }
 
-  void onMicTapped() async {
+  void startListening() {
+    // When user holds down the mic
+    currentState.value = VoiceBotState.listening;
+  }
+
+  void stopListening() async {
+    // When user releases the mic
     if (currentState.value == VoiceBotState.listening) {
-      // User finished speaking, now thinking
       currentState.value = VoiceBotState.thinking;
       
       // Simulate API delay, then start speaking
@@ -20,9 +25,6 @@ class VoiceListeningController extends GetxController {
       if (currentState.value == VoiceBotState.thinking) {
         currentState.value = VoiceBotState.speaking;
       }
-    } else {
-      // If thinking or speaking, tapping mic interrupts and starts listening again
-      currentState.value = VoiceBotState.listening;
     }
   }
 }
