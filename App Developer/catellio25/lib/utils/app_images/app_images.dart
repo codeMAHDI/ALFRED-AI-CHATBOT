@@ -8,7 +8,7 @@ class AppImages {
 
   ///====================== Profile Setup =========================
   static const String profileSetup3 = "$basePath/profile_setup_page_3.png";
-  static const String orbImage = "$basePath/Gemini_Generated_Image_75pcoo75pcoo75pc-removebg-preview 1.png";
+  static const String orbImage = "$basePath/alfred.jpg";
   static const String vectorImage = "$basePath/vectorimage.png";
 
 
