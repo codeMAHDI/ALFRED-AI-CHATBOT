@@ -29,6 +29,7 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
             Center(
               child: AnimatedSparkingOrb(
                 imagePath: AppImages.orbImage,
+                lottieSparkPath: 'assets/lottie/spark.json',
                 width: 260.w,
                 height: 260.w,
                 isListening: true,

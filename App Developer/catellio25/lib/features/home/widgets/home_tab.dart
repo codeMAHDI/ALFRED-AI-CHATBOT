@@ -44,6 +44,7 @@ class HomeTab extends GetView<HomeController> {
             Center(
               child: AnimatedSparkingOrb(
                 imagePath: AppImages.orbImage,
+                lottieSparkPath: 'assets/lottie/spark.json',
                 width: 280.w,
                 height: 280.w,
               ),
