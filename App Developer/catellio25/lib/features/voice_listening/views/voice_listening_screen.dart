@@ -73,36 +73,47 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
               ),
             ),
             const Spacer(),
-            Obx(() => GestureDetector(
-              onTapDown: (_) => controller.startListening(),
-              onTapUp: (_) => controller.stopListening(),
-              onTapCancel: () => controller.stopListening(),
-              child: AnimatedScale(
-                scale: controller.currentState.value == VoiceBotState.listening ? 0.85 : 1.0,
-                duration: const Duration(milliseconds: 150),
-                child: AnimatedContainer(
-                  duration: const Duration(milliseconds: 150),
-                  padding: EdgeInsets.all(24.w),
-                  decoration: BoxDecoration(
-                    color: controller.currentState.value == VoiceBotState.listening 
-                        ? Colors.grey.shade900 
-                        : AppColors.black,
-                    shape: BoxShape.circle,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withOpacity(
-                            controller.currentState.value == VoiceBotState.listening ? 0.3 : 0.1),
-                        blurRadius: controller.currentState.value == VoiceBotState.listening ? 10 : 20,
-                        offset: controller.currentState.value == VoiceBotState.listening 
-                            ? const Offset(0, 5) 
-                            : const Offset(0, 10),
-                      ),
-                    ],
+            Obx(() {
+              final isRecording = controller.currentState.value == VoiceBotState.listening;
+              return GestureDetector(
+                onTapDown: (_) => controller.startListening(),
+                onTapUp: (_) => controller.stopListening(),
+                onTapCancel: () => controller.stopListening(),
+                child: AnimatedScale(
+                  scale: isRecording ? 1.15 : 1.0,
+                  duration: const Duration(milliseconds: 300),
+                  curve: Curves.easeOutBack, // Gives a premium bouncy pop effect
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 300),
+                    padding: EdgeInsets.all(24.w),
+                    decoration: BoxDecoration(
+                      color: AppColors.black,
+                      shape: BoxShape.circle,
+                      boxShadow: [
+                        if (isRecording)
+                          BoxShadow(
+                            color: const Color(0xFFF39C12).withOpacity(0.6), // Beautiful golden glow
+                            blurRadius: 40,
+                            spreadRadius: 10,
+                            offset: const Offset(0, 0),
+                          )
+                        else
+                          BoxShadow(
+                            color: Colors.black.withOpacity(0.1),
+                            blurRadius: 20,
+                            offset: const Offset(0, 10),
+                          ),
+                      ],
+                    ),
+                    child: Icon(
+                      Icons.mic, 
+                      color: isRecording ? const Color(0xFFF39C12) : AppColors.white, 
+                      size: 32.sp,
+                    ),
                   ),
-                  child: Icon(Icons.mic, color: AppColors.white, size: 32.sp),
                 ),
-              ),
-            )),
+              );
+            }),
             SizedBox(height: 60.h),
             CustomText(
               text: AppStrings.alfredConcierge,
