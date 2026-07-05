@@ -69,20 +69,23 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
               ),
             ),
             const Spacer(),
-            Container(
-              padding: EdgeInsets.all(24.w),
-              decoration: BoxDecoration(
-                color: AppColors.black,
-                shape: BoxShape.circle,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    blurRadius: 20,
-                    offset: const Offset(0, 10),
-                  ),
-                ],
+            GestureDetector(
+              onTap: controller.onMicTapped,
+              child: Container(
+                padding: EdgeInsets.all(24.w),
+                decoration: BoxDecoration(
+                  color: AppColors.black,
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withOpacity(0.1),
+                      blurRadius: 20,
+                      offset: const Offset(0, 10),
+                    ),
+                  ],
+                ),
+                child: Icon(Icons.mic, color: AppColors.white, size: 32.sp),
               ),
-              child: Icon(Icons.mic, color: AppColors.white, size: 32.sp),
             ),
             SizedBox(height: 60.h),
             CustomText(

@@ -8,18 +8,21 @@ class VoiceListeningController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    _simulateBotInteraction();
   }
 
-  void _simulateBotInteraction() async {
-    // 1. Start with listening (already set)
-    await Future.delayed(const Duration(seconds: 3));
-    
-    // 2. Change to thinking
-    currentState.value = VoiceBotState.thinking;
-    await Future.delayed(const Duration(seconds: 2));
-    
-    // 3. Change to speaking
-    currentState.value = VoiceBotState.speaking;
+  void onMicTapped() async {
+    if (currentState.value == VoiceBotState.listening) {
+      // User finished speaking, now thinking
+      currentState.value = VoiceBotState.thinking;
+      
+      // Simulate API delay, then start speaking
+      await Future.delayed(const Duration(seconds: 2));
+      if (currentState.value == VoiceBotState.thinking) {
+        currentState.value = VoiceBotState.speaking;
+      }
+    } else {
+      // If thinking or speaking, tapping mic interrupts and starts listening again
+      currentState.value = VoiceBotState.listening;
+    }
   }
 }
