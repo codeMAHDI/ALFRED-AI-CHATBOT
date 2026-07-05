@@ -5,12 +5,14 @@ class AnimatedSparkingOrb extends StatefulWidget {
   final String imagePath;
   final double width;
   final double height;
+  final bool isListening;
 
   const AnimatedSparkingOrb({
     super.key,
     required this.imagePath,
     required this.width,
     required this.height,
+    this.isListening = false,
   });
 
   @override
@@ -27,7 +29,11 @@ class _AnimatedSparkingOrbState extends State<AnimatedSparkingOrb> with SingleTi
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 1500),
-    )..repeat();
+    );
+    
+    if (!widget.isListening) {
+      _controller.repeat();
+    }
 
     // Create an erratic pulsing effect to simulate electric sparking
     _opacityAnimation = TweenSequence<double>([
@@ -39,6 +45,18 @@ class _AnimatedSparkingOrbState extends State<AnimatedSparkingOrb> with SingleTi
       TweenSequenceItem(tween: Tween(begin: 0.3, end: 1.0), weight: 10),
       TweenSequenceItem(tween: Tween(begin: 1.0, end: 0.0), weight: 30),
     ]).animate(CurvedAnimation(parent: _controller, curve: Curves.linear));
+  }
+
+  @override
+  void didUpdateWidget(AnimatedSparkingOrb oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (widget.isListening != oldWidget.isListening) {
+      if (widget.isListening) {
+        _controller.animateTo(0.0, duration: const Duration(milliseconds: 300));
+      } else {
+        _controller.repeat();
+      }
+    }
   }
 
   @override

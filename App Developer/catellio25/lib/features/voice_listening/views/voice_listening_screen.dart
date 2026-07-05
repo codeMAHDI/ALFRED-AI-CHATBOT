@@ -31,6 +31,7 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
                 imagePath: AppImages.orbImage,
                 width: 260.w,
                 height: 260.w,
+                isListening: true,
               ),
             ),
             SizedBox(height: 40.h),

@@ -100,15 +100,16 @@ class AuthScreen extends GetView<AuthController> {
               alignment: Alignment.centerRight,
               child: CustomButton(
                 onTap: controller.forgotPassword,
-                title: "Forget Password...",
-                height: 30.h,
-                width: 140.w,
+                title: "Forget Password",
+                height: 42.h,
+                width: 142.w,
                 fillColor: Colors.transparent,
                 textColor: AppColors.black,
-                fontSize: 12.sp,
+                isBorder: true,
+                fontSize: 16.sp,
               ),
             ),
-            SizedBox(height: 30.h),
+            SizedBox(height: 12.h),
 
             // Sign In Button
             CustomButton(

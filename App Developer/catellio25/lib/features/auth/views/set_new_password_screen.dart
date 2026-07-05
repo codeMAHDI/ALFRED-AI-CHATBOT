@@ -7,6 +7,7 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_text_field/custom_text_field.dart';
 import '../../../../global_widgets/custom_button/custom_button.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
+import '../../../core/app_routes/app_routes.dart';
 import '../view_models/auth_controller.dart';
 
 class SetNewPasswordScreen extends GetView<AuthController> {
@@ -36,7 +37,7 @@ class SetNewPasswordScreen extends GetView<AuthController> {
             SizedBox(height: 12.h),
             CustomText(
               text: "Your new password must be different from previous used passwords.",
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.greyShade,
               maxLines: 3,
               textAlign: TextAlign.start,
@@ -45,7 +46,7 @@ class SetNewPasswordScreen extends GetView<AuthController> {
             
             CustomText(
               text: "New Password",
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.greyShade,
             ),
@@ -63,7 +64,7 @@ class SetNewPasswordScreen extends GetView<AuthController> {
             
             CustomText(
               text: "Confirm Password",
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.w600,
               color: AppColors.greyShade,
             ),
@@ -81,7 +82,6 @@ class SetNewPasswordScreen extends GetView<AuthController> {
             
             CustomButton(
               onTap: () {
-                // Assuming we reset successfully, go back to auth screen
                 Get.offAllNamed(AppRoutes.authScreen);
               },
               title: "Update Password",
