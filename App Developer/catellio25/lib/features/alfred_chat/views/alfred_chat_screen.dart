@@ -147,9 +147,13 @@ class AlfredChatScreen extends GetView<AlfredChatController> {
             ),
             child: Row(
               children: [
-                GestureDetector(
+                InkWell(
                   onTap: () => controller.pickMedia(),
-                  child: Icon(Icons.attach_file, color: AppColors.greyShade, size: 20.sp),
+                  borderRadius: BorderRadius.circular(20),
+                  child: Padding(
+                    padding: EdgeInsets.all(4.w),
+                    child: Icon(Icons.attach_file, color: AppColors.greyShade, size: 20.sp),
+                  ),
                 ),
                 SizedBox(width: 12.w),
                 Expanded(
