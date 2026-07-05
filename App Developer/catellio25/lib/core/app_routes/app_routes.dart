@@ -23,10 +23,9 @@ import '../../features/voice_listening/bindings/voice_listening_binding.dart';
 import '../../features/voice_listening/views/voice_listening_screen.dart';
 import '../../features/finding_date_splash/bindings/finding_date_splash_binding.dart';
 import '../../features/finding_date_splash/views/finding_date_splash_screen.dart';
-import '../../features/plan_details/bindings/plan_details_binding.dart';
-import '../../features/plan_details/views/plan_details_screen.dart';
-import '../../features/calendar/bindings/calendar_binding.dart';
-import '../../features/calendar/views/calendar_screen.dart';
+import '../../features/plans/bindings/plans_binding.dart';
+import '../../features/plans/views/plan_details_screen.dart';
+import '../../features/plans/views/calendar_screen.dart';
 import '../../features/discovery/bindings/discovery_binding.dart';
 import '../../features/discovery/views/discovery_screen.dart';
 import '../../features/discovery/views/discovery_details_screen.dart';
@@ -91,8 +90,8 @@ class AppRoutes {
     GetPage(name: alfredChatScreen, page: () => const AlfredChatScreen(), binding: AlfredChatBinding()),
     GetPage(name: voiceListeningScreen, page: () => const VoiceListeningScreen(), binding: VoiceListeningBinding()),
     GetPage(name: findingDateSplashScreen, page: () => const FindingDateSplashScreen(), binding: FindingDateSplashBinding()),
-    GetPage(name: planDetailsScreen, page: () => const PlanDetailsScreen(), binding: PlanDetailsBinding()),
-    GetPage(name: calendarScreen, page: () => const CalendarScreen(), binding: CalendarBinding()),
+    GetPage(name: planDetailsScreen, page: () => const PlanDetailsScreen(), binding: PlansBinding()),
+    GetPage(name: calendarScreen, page: () => const CalendarScreen(), binding: PlansBinding()),
     GetPage(name: discoveryScreen, page: () => const DiscoveryScreen(), binding: DiscoveryBinding()),
     GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsScreen(), binding: DiscoveryBinding()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen(), binding: ProfileBinding()),

@@ -17,13 +17,12 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Top Image with Back and Bookmark buttons
             Stack(
               children: [
                 Image.network(
                   "https://images.unsplash.com/photo-1514933651103-005eec06c04b?q=80&w=800&auto=format&fit=crop",
                   width: double.infinity,
-                  height: 350.h,
+                  height: 390.h,
                   fit: BoxFit.cover,
                   errorBuilder: (context, error, stackTrace) => Container(
                     width: double.infinity,
@@ -81,7 +80,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                         ),
                         child: CustomText(
                           text: "FINE DINING",
-                          fontSize: 8.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.black,
                         ),
@@ -95,7 +94,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                         ),
                         child: CustomText(
                           text: "EXCLUSIVE",
-                          fontSize: 8.sp,
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.white,
                         ),
@@ -106,7 +105,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                   
                   CustomText(
                     text: "The Obsidian\nRoom",
-                    fontSize: 32.sp,
+                    fontSize: 44.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
                   ),
@@ -114,16 +113,18 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                   
                   CustomText(
                     text: "An immersive culinary journey in total darkness, curated by Chef Elena Roux. Experience flavor, texture, and aroma in their purest forms, stripped of visual bias.",
-                    fontSize: 14.sp,
+                    fontSize: 18.sp,
                     color: AppColors.greyShade,
+                    maxLines: 10,
                   ),
                   SizedBox(height: 32.h),
                   
                   CustomText(
                     text: "The Experience",
-                    fontSize: 18.sp,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
+
                   ),
                   SizedBox(height: 16.h),
                   
@@ -150,7 +151,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                   
                   CustomText(
                     text: "Details",
-                    fontSize: 18.sp,
+                    fontSize: 24.sp,
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
                   ),
@@ -173,7 +174,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
                           SizedBox(height: 4.h),
                           CustomText(
                             text: "42 Berkeley Square, Mayfair\nLondon W1J 5AW",
-                            fontSize: 14.sp,
+                            fontSize: 16.sp,
                             color: AppColors.greyShade,
                           ),
                         ],
@@ -221,6 +222,7 @@ class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
           CustomText(
             text: desc,
             fontSize: 12.sp,
+            maxLines: 10,
             color: AppColors.greyShade,
           ),
         ],

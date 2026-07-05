@@ -9,9 +9,9 @@ import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../../../../core/app_routes/app_routes.dart';
 import '../../../../utils/app_icons/app_icons.dart';
-import '../view_models/calendar_controller.dart';
+import '../view_models/plans_controller.dart';
 
-class CalendarScreen extends GetView<CalendarController> {
+class CalendarScreen extends GetView<PlansController> {
   final bool isStandalone;
   
   const CalendarScreen({super.key, this.isStandalone = true});

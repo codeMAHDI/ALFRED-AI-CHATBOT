@@ -7,9 +7,9 @@ import '../../../../utils/app_strings/app_strings.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
 import '../../../../core/app_routes/app_routes.dart';
-import '../view_models/plan_details_controller.dart';
+import '../view_models/plans_controller.dart';
 
-class PlanDetailsScreen extends GetView<PlanDetailsController> {
+class PlanDetailsScreen extends GetView<PlansController> {
   const PlanDetailsScreen({super.key});
 
   @override

@@ -22,7 +22,7 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
         actionWidget: CircleAvatar(
           radius: 16.r,
           backgroundColor: AppColors.greyShade.withOpacity(0.2),
-          child: Icon(Icons.person, color: AppColors.greyShade, size: 20.sp),
+          child: Icon(Icons.person, color: AppColors.greyShade, size: 24.sp),
         ),
       ),
       body: SingleChildScrollView(
@@ -31,6 +31,7 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
           children: [
             // Search Bar
             Container(
+              height: 54,
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 14.h),
               decoration: BoxDecoration(
                 color: AppColors.white,
@@ -43,7 +44,7 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
                   SizedBox(width: 12.w),
                   CustomText(
                     text: "How can I assist your discovery today?",
-                    fontSize: 14.sp,
+                    fontSize: 16.sp,
                     color: AppColors.greyShade,
                   ),
                 ],
@@ -154,7 +155,7 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
               child: Image.network(
                 imageUrl,
                 width: double.infinity,
-                height: 160.h,
+                height: 180.h,
                 fit: BoxFit.cover,
                 errorBuilder: (context, error, stackTrace) => Container(
                   width: double.infinity,
@@ -184,7 +185,8 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
                   ),
                   child: CustomText(
                     text: tag,
-                    fontSize: 8.sp,
+                    fontSize: 10.sp,
+
                     fontWeight: FontWeight.bold,
                     color: AppColors.black,
                   ),
@@ -194,7 +196,8 @@ class DiscoveryScreen extends GetView<DiscoveryController> {
             SizedBox(height: 8.h),
             CustomText(
               text: desc,
-              fontSize: 12.sp,
+              maxLines: 5,
+              fontSize: 14.sp,
               color: AppColors.greyShade,
             ),
           ],
