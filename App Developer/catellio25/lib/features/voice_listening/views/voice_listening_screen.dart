@@ -73,26 +73,36 @@ class VoiceListeningScreen extends GetView<VoiceListeningController> {
               ),
             ),
             const Spacer(),
-            GestureDetector(
+            Obx(() => GestureDetector(
               onTapDown: (_) => controller.startListening(),
               onTapUp: (_) => controller.stopListening(),
               onTapCancel: () => controller.stopListening(),
-              child: Container(
-                padding: EdgeInsets.all(24.w),
-                decoration: BoxDecoration(
-                  color: AppColors.black,
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      blurRadius: 20,
-                      offset: const Offset(0, 10),
-                    ),
-                  ],
+              child: AnimatedScale(
+                scale: controller.currentState.value == VoiceBotState.listening ? 0.85 : 1.0,
+                duration: const Duration(milliseconds: 150),
+                child: AnimatedContainer(
+                  duration: const Duration(milliseconds: 150),
+                  padding: EdgeInsets.all(24.w),
+                  decoration: BoxDecoration(
+                    color: controller.currentState.value == VoiceBotState.listening 
+                        ? Colors.grey.shade900 
+                        : AppColors.black,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.black.withOpacity(
+                            controller.currentState.value == VoiceBotState.listening ? 0.3 : 0.1),
+                        blurRadius: controller.currentState.value == VoiceBotState.listening ? 10 : 20,
+                        offset: controller.currentState.value == VoiceBotState.listening 
+                            ? const Offset(0, 5) 
+                            : const Offset(0, 10),
+                      ),
+                    ],
+                  ),
+                  child: Icon(Icons.mic, color: AppColors.white, size: 32.sp),
                 ),
-                child: Icon(Icons.mic, color: AppColors.white, size: 32.sp),
               ),
-            ),
+            )),
             SizedBox(height: 60.h),
             CustomText(
               text: AppStrings.alfredConcierge,
