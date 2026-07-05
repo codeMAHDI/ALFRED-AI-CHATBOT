@@ -277,7 +277,8 @@ class ProfileWidgets {
                 SizedBox(height: 12.h),
                 CustomText(
                   text: "Are you sure you want to end your session with Alfred? Your curated itineraries remain safe.",
-                  fontSize: 12.sp,
+                  fontSize: 14.sp,
+                  maxLines: 4,
                   color: AppColors.greyShade,
                   textAlign: TextAlign.center,
                 ),

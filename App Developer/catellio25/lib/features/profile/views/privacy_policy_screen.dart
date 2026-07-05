@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
@@ -34,6 +33,7 @@ class PrivacyPolicyScreen extends GetView<ProfileController> {
             CustomText(
               text: "At Catellio, we are committed to protecting your privacy and ensuring the security of your personal data. This policy explains how we collect, use, and safeguard your information.",
               fontSize: 14.sp,
+              maxLines: 10,
               color: AppColors.greyShade,
             ),
             SizedBox(height: 32.h),
@@ -60,31 +60,33 @@ class PrivacyPolicyScreen extends GetView<ProfileController> {
             
             SizedBox(height: 40.h),
             
-            Container(
-              padding: EdgeInsets.all(24.w),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF4F3ED),
-                borderRadius: BorderRadius.circular(16.r),
-              ),
-              child: Column(
-                children: [
-                  Icon(Icons.shield_outlined, color: AppColors.black, size: 32.sp),
-                  SizedBox(height: 16.h),
-                  CustomText(
-                    text: "Have questions about your privacy?",
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.bold,
-                    color: AppColors.black,
-                    textAlign: TextAlign.center,
-                  ),
-                  SizedBox(height: 8.h),
-                  CustomText(
-                    text: "Contact our Data Protection Officer at privacy@catellio.com",
-                    fontSize: 12.sp,
-                    color: AppColors.greyShade,
-                    textAlign: TextAlign.center,
-                  ),
-                ],
+            Center(
+              child: Container(
+                padding: EdgeInsets.all(24.w),
+                decoration: BoxDecoration(
+                  color: const Color(0xFFF4F3ED),
+                  borderRadius: BorderRadius.circular(16.r),
+                ),
+                child: Column(
+                  children: [
+                    Icon(Icons.shield_outlined, color: AppColors.black, size: 32.sp),
+                    SizedBox(height: 16.h),
+                    CustomText(
+                      text: "Have questions about your privacy?",
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.bold,
+                      color: AppColors.black,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 8.h),
+                    CustomText(
+                      text: "Contact our Data Protection Officer at privacy@catellio.com",
+                      fontSize: 12.sp,
+                      color: AppColors.greyShade,
+                      textAlign: TextAlign.center,
+                    ),
+                  ],
+                ),
               ),
             ),
             
@@ -111,6 +113,7 @@ class PrivacyPolicyScreen extends GetView<ProfileController> {
           CustomText(
             text: content,
             fontSize: 14.sp,
+            maxLines: 10,
             color: AppColors.greyShade,
           ),
         ],

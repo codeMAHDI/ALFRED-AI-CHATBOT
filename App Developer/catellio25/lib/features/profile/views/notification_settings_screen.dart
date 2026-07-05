@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
 import '../../../../global_widgets/custom_royel_appbar/custom_royel_appbar.dart';
@@ -47,7 +46,7 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                       children: [
                         CustomText(
                           text: "Push Notifications",
-                          fontSize: 18.sp,
+                          fontSize: 24.sp,
                           fontWeight: FontWeight.bold,
                           color: AppColors.black,
                         ),
@@ -55,6 +54,8 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                         CustomText(
                           text: "Allow Alfred to send critical alerts and real-time updates",
                           fontSize: 12.sp,
+                          textAlign: TextAlign.start,
+                          maxLines: 3,
                           color: AppColors.greyShade,
                         ),
                       ],
@@ -75,7 +76,7 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
             // Section Header
             CustomText(
               text: "ALERT PREFERENCES",
-              fontSize: 12.sp,
+              fontSize: 14.sp,
               fontWeight: FontWeight.bold,
               color: AppColors.greyShade,
             ),
@@ -122,6 +123,8 @@ class NotificationSettingsScreen extends GetView<ProfileController> {
                           text: "Birthdays, anniversaries, and key milestones",
                           fontSize: 12.sp,
                           color: AppColors.greyShade,
+                          textAlign: TextAlign.start,
+                          maxLines: 3,
                         ),
                       ],
                     ),

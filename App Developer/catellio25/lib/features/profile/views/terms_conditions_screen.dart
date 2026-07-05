@@ -89,6 +89,7 @@ class TermsConditionsScreen extends GetView<ProfileController> {
                     fontSize: 12.sp,
                     color: AppColors.greyShade,
                     textAlign: TextAlign.center,
+                    maxLines: 4,
                   ),
                   SizedBox(height: 16.h),
                   GestureDetector(
@@ -137,6 +138,7 @@ class TermsConditionsScreen extends GetView<ProfileController> {
           CustomText(
             text: content,
             fontSize: 14.sp,
+            maxLines: 10,
             color: AppColors.greyShade,
           ),
         ],

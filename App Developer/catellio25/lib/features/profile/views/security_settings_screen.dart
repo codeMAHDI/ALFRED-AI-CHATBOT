@@ -62,7 +62,7 @@ class SecuritySettingsScreen extends GetView<ProfileController> {
                     children: [
                       CustomText(
                         text: "Current Password",
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.greyShade,
                       ),
@@ -83,7 +83,7 @@ class SecuritySettingsScreen extends GetView<ProfileController> {
                     children: [
                       CustomText(
                         text: "New Password",
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.greyShade,
                       ),
@@ -125,7 +125,7 @@ class SecuritySettingsScreen extends GetView<ProfileController> {
                     children: [
                       CustomText(
                         text: "Confirm New Password",
-                        fontSize: 12.sp,
+                        fontSize: 14.sp,
                         fontWeight: FontWeight.bold,
                         color: AppColors.greyShade,
                       ),
@@ -162,7 +162,7 @@ class SecuritySettingsScreen extends GetView<ProfileController> {
             
             CustomText(
               text: "Forgot your current password?",
-              fontSize: 14.sp,
+              fontSize: 16.sp,
               color: AppColors.greyShade,
             ),
             SizedBox(height: 8.h),
