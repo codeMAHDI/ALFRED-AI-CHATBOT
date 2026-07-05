@@ -1,8 +1,10 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class AnimatedSparkingOrb extends StatefulWidget {
   final String imagePath;
+  final String? lottieSparkPath;
   final double width;
   final double height;
   final bool isListening;
@@ -10,6 +12,7 @@ class AnimatedSparkingOrb extends StatefulWidget {
   const AnimatedSparkingOrb({
     super.key,
     required this.imagePath,
+    this.lottieSparkPath,
     required this.width,
     required this.height,
     this.isListening = false,
@@ -81,31 +84,41 @@ class _AnimatedSparkingOrbState extends State<AnimatedSparkingOrb> with SingleTi
             fit: BoxFit.contain,
           ),
           
-          // Glowing/sparking layer
-          AnimatedBuilder(
-            animation: _opacityAnimation,
-            builder: (context, child) {
-              return Opacity(
-                opacity: _opacityAnimation.value,
-                child: child,
-              );
-            },
-            child: ImageFiltered(
-              imageFilter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 2.0),
-              child: ColorFiltered(
-                colorFilter: const ColorFilter.mode(
-                  Colors.white,
-                  BlendMode.overlay,
-                ),
-                child: Image.asset(
-                  widget.imagePath,
-                  width: widget.width,
-                  height: widget.height,
-                  fit: BoxFit.contain,
+          // Lottie spark layer or Fallback
+          if (widget.lottieSparkPath != null)
+            Lottie.asset(
+              widget.lottieSparkPath!,
+              width: widget.width,
+              height: widget.height,
+              fit: BoxFit.contain,
+              animate: !widget.isListening,
+              repeat: true,
+            )
+          else
+            AnimatedBuilder(
+              animation: _opacityAnimation,
+              builder: (context, child) {
+                return Opacity(
+                  opacity: _opacityAnimation.value,
+                  child: child,
+                );
+              },
+              child: ImageFiltered(
+                imageFilter: ImageFilter.blur(sigmaX: 8.0, sigmaY: 2.0),
+                child: ColorFiltered(
+                  colorFilter: const ColorFilter.mode(
+                    Colors.white,
+                    BlendMode.overlay,
+                  ),
+                  child: Image.asset(
+                    widget.imagePath,
+                    width: widget.width,
+                    height: widget.height,
+                    fit: BoxFit.contain,
+                  ),
                 ),
               ),
             ),
-          ),
         ],
       ),
     );
