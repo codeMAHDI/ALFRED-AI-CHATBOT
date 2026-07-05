@@ -29,8 +29,7 @@ import '../../features/calendar/bindings/calendar_binding.dart';
 import '../../features/calendar/views/calendar_screen.dart';
 import '../../features/discovery/bindings/discovery_binding.dart';
 import '../../features/discovery/views/discovery_screen.dart';
-import '../../features/discovery_details/bindings/discovery_details_binding.dart';
-import '../../features/discovery_details/views/discovery_details_screen.dart';
+import '../../features/discovery/views/discovery_details_screen.dart';
 import '../../features/profile/bindings/profile_binding.dart';
 import '../../features/profile/views/edit_profile_screen.dart';
 import '../../features/profile/views/security_settings_screen.dart';
@@ -95,7 +94,7 @@ class AppRoutes {
     GetPage(name: planDetailsScreen, page: () => const PlanDetailsScreen(), binding: PlanDetailsBinding()),
     GetPage(name: calendarScreen, page: () => const CalendarScreen(), binding: CalendarBinding()),
     GetPage(name: discoveryScreen, page: () => const DiscoveryScreen(), binding: DiscoveryBinding()),
-    GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsScreen(), binding: DiscoveryDetailsBinding()),
+    GetPage(name: discoveryDetailsScreen, page: () => const DiscoveryDetailsScreen(), binding: DiscoveryBinding()),
     GetPage(name: editProfileScreen, page: () => const EditProfileScreen(), binding: ProfileBinding()),
     GetPage(name: securitySettingsScreen, page: () => const SecuritySettingsScreen(), binding: ProfileBinding()),
     GetPage(name: notificationSettingsScreen, page: () => const NotificationSettingsScreen(), binding: ProfileBinding()),

@@ -4,9 +4,9 @@ import 'package:get/get.dart';
 
 import '../../../../core/theme/app_colors.dart';
 import '../../../../global_widgets/custom_text/custom_text.dart';
-import '../view_models/discovery_details_controller.dart';
+import '../view_models/discovery_controller.dart';
 
-class DiscoveryDetailsScreen extends GetView<DiscoveryDetailsController> {
+class DiscoveryDetailsScreen extends GetView<DiscoveryController> {
   const DiscoveryDetailsScreen({super.key});
 
   @override
