@@ -87,7 +87,7 @@ class _AnimatedSparkingOrbState extends State<AnimatedSparkingOrb> with SingleTi
           // Lottie spark layer or Fallback
           if (widget.lottieSparkPath != null)
             Transform.scale(
-              scale: 0.75, // Scale down the wave so it stays inside the circle
+              scale: 0.85, // Scale down the wave so it stays inside the circle
               child: Lottie.asset(
                 widget.lottieSparkPath!,
                 width: widget.width,
