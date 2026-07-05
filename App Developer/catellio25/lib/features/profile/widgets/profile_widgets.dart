@@ -177,11 +177,6 @@ class ProfileWidgets {
           ),
           Divider(height: 1, color: AppColors.greyShade.withOpacity(0.1)),
           GestureDetector(
-            onTap: () => Get.toNamed(AppRoutes.notificationSettingsScreen),
-            child: buildMenuItem(Icons.notifications_none, "Notifications"),
-          ),
-          Divider(height: 1, color: AppColors.greyShade.withOpacity(0.1)),
-          GestureDetector(
             onTap: () => Get.toNamed(AppRoutes.privacyPolicyScreen),
             child: buildMenuItem(Icons.privacy_tip_outlined, "Privacy Policy"),
           ),
