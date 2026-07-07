@@ -150,13 +150,39 @@ class EditProfileScreen extends GetView<ProfileController> {
                         color: AppColors.black,
                       ),
                       SizedBox(height: 8.h),
-                      CustomTextField(
-                        hintText: "Male",
-                        hintStyle: TextStyle(fontSize: 16.h, fontWeight: FontWeight.w400),
-                        fillColor: AppColors.white,
-                        fieldBorderColor: const Color(0xFFF0F0F0),
-                        readOnly: true,
-                        suffixIcon: Icon(Icons.keyboard_arrow_down, color: AppColors.greyShade, size: 20.sp),
+                      Container(
+                        height: 52.h,
+                        padding: EdgeInsets.symmetric(horizontal: 16.w),
+                        decoration: BoxDecoration(
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(16.r),
+                          border: Border.all(color: const Color(0xFFF0F0F0)),
+                        ),
+                        child: Obx(() => DropdownButtonHideUnderline(
+                          child: DropdownButton<String>(
+                            value: controller.selectedGender.value,
+                            isExpanded: true,
+                            dropdownColor: AppColors.white,
+                            borderRadius: BorderRadius.circular(16.r),
+                            elevation: 2,
+                            icon: Icon(Icons.keyboard_arrow_down, color: AppColors.greyShade, size: 20.sp),
+                            items: controller.genders.map((String value) {
+                              return DropdownMenuItem<String>(
+                                value: value,
+                                child: Text(
+                                  value,
+                                  style: TextStyle(
+                                    fontSize: 16.sp,
+                                    color: value == 'Select' ? AppColors.greyShade : AppColors.black,
+                                  ),
+                                ),
+                              );
+                            }).toList(),
+                            onChanged: (val) {
+                              if (val != null) controller.selectedGender.value = val;
+                            },
+                          ),
+                        )),
                       ),
                     ],
                   ),

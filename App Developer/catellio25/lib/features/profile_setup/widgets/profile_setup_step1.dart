@@ -102,6 +102,9 @@ class ProfileSetupStep1 extends GetView<ProfileSetupController> {
                         child: DropdownButton<String>(
                           value: controller.selectedGender.value,
                           isExpanded: true,
+                          dropdownColor: AppColors.white,
+                          borderRadius: BorderRadius.circular(16.r),
+                          elevation: 2,
                           icon: Icon(Icons.keyboard_arrow_down, color: AppColors.greyShade),
                           items: controller.genders.map((String value) {
                             return DropdownMenuItem<String>(

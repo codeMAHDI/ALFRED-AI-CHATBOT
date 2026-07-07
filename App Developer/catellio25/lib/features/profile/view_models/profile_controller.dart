@@ -1,6 +1,10 @@
 import 'package:get/get.dart';
 
 class ProfileController extends GetxController {
+  // Edit Profile
+  final selectedGender = 'Male'.obs;
+  final genders = ['Select', 'Male', 'Female', 'Other'];
+
   // Notification Settings
   final pushNotifications = true.obs;
   final dateReminders = true.obs;

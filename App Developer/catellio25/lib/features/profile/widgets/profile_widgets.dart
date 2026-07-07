@@ -280,7 +280,7 @@ class ProfileWidgets {
                 SizedBox(height: 32.h),
                 GestureDetector(
                   onTap: () {
-                    Get.back();
+                    Get.offAllNamed(AppRoutes.authScreen);
                   },
                   child: Container(
                     width: double.infinity,
