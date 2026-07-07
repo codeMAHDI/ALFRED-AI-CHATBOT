@@ -122,12 +122,7 @@ class CustomDrawer extends StatelessWidget {
               isSelected: currentRoute == AppRoutes.premiumVoiceStoreScreen,
               onTap: () => _navigateTo(AppRoutes.premiumVoiceStoreScreen),
             ),
-            _buildDrawerItem(
-              iconPath: AppIcons.budgetIcon,
-              title: AppStrings.budgetInsights,
-              isSelected: currentRoute == AppRoutes.budgetInsightsScreen,
-              onTap: () => _navigateTo(AppRoutes.budgetInsightsScreen),
-            ),
+
           ],
         ),
       ),

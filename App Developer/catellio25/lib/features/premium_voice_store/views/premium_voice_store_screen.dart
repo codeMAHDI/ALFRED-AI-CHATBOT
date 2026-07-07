@@ -64,33 +64,6 @@ class PremiumVoiceStoreScreen extends GetView<PremiumVoiceStoreController> {
               title: "Default Alfred",
               description: "Balanced, sophisticated, and attentive. The original experience designed for seamless daily management.",
             ),
-            SizedBox(height: 24.h),
-
-            _buildVoiceCard(
-              tag: "Premium",
-              isActive: false,
-              iconPath: AppIcons.premiumVoiceIcon,
-              title: "Professional",
-              description: "Precise, formal, and highly efficient. Optimized for high-stakes business coordination and brief updates.",
-            ),
-            SizedBox(height: 24.h),
-
-            _buildVoiceCard(
-              tag: "Bespoke",
-              isActive: false,
-              iconPath: AppIcons.executiveVoiceIcon,
-              title: "Executive",
-              description: "Authoritative, commanding, yet refined. For those who require a voice that reflects leadership and poise.",
-            ),
-            SizedBox(height: 24.h),
-
-            _buildVoiceCard(
-              tag: "Elegant",
-              isActive: false,
-              iconPath: AppIcons.elegantVoiceIcon,
-              title: "Romantic",
-              description: "Soft, warm, and eloquently spoken. A gentle companion for relaxed evening planning and poetry readbacks.",
-            ),
             SizedBox(height: 40.h),
           ],
         ),

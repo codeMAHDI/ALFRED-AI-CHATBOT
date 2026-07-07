@@ -40,8 +40,7 @@ import '../../features/saved_items/bindings/saved_items_binding.dart';
 import '../../features/saved_items/views/saved_items_screen.dart';
 import '../../features/premium_voice_store/bindings/premium_voice_store_binding.dart';
 import '../../features/premium_voice_store/views/premium_voice_store_screen.dart';
-import '../../features/budget_insights/bindings/budget_insights_binding.dart';
-import '../../features/budget_insights/views/budget_insights_screen.dart';
+
 
 class AppRoutes {
 
@@ -70,7 +69,6 @@ class AppRoutes {
   static const String dateHistoryScreen = "/date_history_screen";
   static const String savedItemsScreen = "/saved_items_screen";
   static const String premiumVoiceStoreScreen = "/premium_voice_store_screen";
-  static const String budgetInsightsScreen = "/budget_insights_screen";
 
 
   static List<GetPage> routes = [
@@ -99,6 +97,5 @@ class AppRoutes {
     GetPage(name: dateHistoryScreen, page: () =>  DateHistoryScreen(), binding: DateHistoryBinding()),
     GetPage(name: savedItemsScreen, page: () =>  SavedItemsScreen(), binding: SavedItemsBinding()),
     GetPage(name: premiumVoiceStoreScreen, page: () => PremiumVoiceStoreScreen(), binding: PremiumVoiceStoreBinding()),
-    GetPage(name: budgetInsightsScreen, page: () => BudgetInsightsScreen(), binding: BudgetInsightsBinding()),
   ];
 }
