@@ -139,7 +139,6 @@ class ResendOTPSerializer(serializers.Serializer):
 class UserLoginSerializer(serializers.Serializer):
     """
     Shared login validation logic.
-    Subclasses set `allowed_roles` to restrict which role can use the endpoint.
     """
     email    = serializers.EmailField()
     password = serializers.CharField(write_only=True, style={"input_type": "password"})
@@ -440,6 +439,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "gender",
             "age",
             "profile_picture",
+            "location",
+            "interests",
+            "budget",
             "subscription_plan",
             "subscription_start",
             "subscription_end",
@@ -449,8 +451,9 @@ class UserProfileSerializer(serializers.ModelSerializer):
             "updated_at",
         ]
         read_only_fields = [
-            "id", "email", "gender",
-            "subscription_plan", "subscription_start", "subscription_end",
+            "id", "email",           
+            "subscription_plan", "subscription_start", 
+            "subscription_end",
             "provider", "is_active", 
             "created_at", "updated_at",
         ]
@@ -471,7 +474,8 @@ class UpdateProfileSerializer(serializers.ModelSerializer):
     """
     class Meta:
         model  = User
-        fields = ["full_name", "age", "profile_picture", "gender", "device_token"]
+        fields = ["full_name", "age", "profile_picture", "gender", "location",
+                    "interests", "budget", "device_token"]
 
 
 

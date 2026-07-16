@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # Local apps
     'apps.api',
     'apps.users',
+    'apps.notifications',
 ]
 
 MIDDLEWARE = [
@@ -129,8 +130,8 @@ _csrf_trusted = set([
     "http://localhost:5173",
     "http://127.0.0.1:5173",
     "https://admin.alfredai.com",
-    "https://api.alfredai.com",
-    "https://dashboard.url.devtunnels.ms",
+    "https://api.alfredai.com",             # TODO: replace with actual domain
+    "https://dashboard.url.devtunnels.ms",  # for ngrok / devtunnels
 ])
 # Add any extra origins from CORS_ALLOWED_ORIGINS to CSRF_TRUSTED_ORIGINS
 if _cors_origins_env:

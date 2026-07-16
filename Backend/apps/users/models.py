@@ -115,7 +115,12 @@ class User(AbstractUser):
         null=True,
         verbose_name=_("Profile Picture"),
     )
-
+    
+    # ── Location and preferences ──────────────────────────────────────────────
+    location = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Location"))
+    interests = models.JSONField(blank=True, null=True, verbose_name=_("Interests"))
+    budget = models.CharField(max_length=100, blank=True, null=True, verbose_name=_("Budget"))
+    
     # ── Subscription ──────────────────────────────────────────────────────────
     subscription_plan = models.CharField(
         max_length=20,
@@ -140,8 +145,7 @@ class User(AbstractUser):
         default=True,
         verbose_name=_("Active"),
         help_text=(
-            "False = account is blocked (by admin) or deactivated (by user). "
-            "Check deactivated_by_user to distinguish the two."
+            "False = account is blocked (by admin) "
         ),
     )
 
