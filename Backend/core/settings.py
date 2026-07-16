@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     
     # Local apps
     'apps.api',
+    'apps.users',
 ]
 
 MIDDLEWARE = [
@@ -198,7 +199,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
-# AUTH_USER_MODEL = 'apps.users.User'
+AUTH_USER_MODEL = 'apps.users.User'
 
 
 # # Security Settings (Data Encryption)
@@ -344,15 +345,13 @@ REST_FRAMEWORK = {
 
 # drf-spectacular settings
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'A Muslim Matchmaker (AMM) API',
+    'TITLE': 'Alfred - Your AI Dating Concierge API',
     'DESCRIPTION': (
-        'API for A Muslim Matchmaker — a trusted matrimonial platform for conservative Sunni Muslims. '
-        'Provides endpoints for authentication, profile management, connection requests, matches, '
-        'notifications, chat, and private matchmaking.'
+        'API for Alfred - Your AI Dating Concierge. '
     ),
     'VERSION': '1.0.0',
     'TERMS_OF_SERVICE': '',
-    'CONTACT': {'email': 'support@amuslimmatrimony.com'},
+    'CONTACT': {'email': 'support@alfredai.com'},
     'LICENSE': {'name': 'Proprietary'},
     'SERVE_INCLUDE_SCHEMA': False,
     
@@ -366,11 +365,11 @@ SPECTACULAR_SETTINGS = {
 
 # Jazzmin settings
 JAZZMIN_SETTINGS = {
-    "site_title": "AMM Admin",
-    "site_header": "A Muslim Matchmaker",
-    "site_brand": "AMM",
-    "welcome_sign": "Welcome to the AMM Admin Panel",
-    "copyright": "A Muslim Matchmaker © 2026",
+    "site_title": "Alfred AI Admin",
+    "site_header": "Alfred AI",
+    "site_brand": "Alfred",
+    "welcome_sign": "Welcome to the Alfred AI Panel",
+    "copyright": "Alfred AI © 2026",
     "user_avatar": None,
     "icons": {
         "auth": "fas fa-users-cog",
@@ -396,8 +395,8 @@ JAZZMIN_UI_TWEAKS = {
 
 
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=7),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=15),
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=30),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION': True,
     'UPDATE_LAST_LOGIN': True,
@@ -455,7 +454,7 @@ CACHES = {
             'RETRY_ON_TIMEOUT': True,
             'HEALTH_CHECK_INTERVAL': _REDIS_HEALTH_CHECK_INTERVAL,
         },
-        'KEY_PREFIX': 'amm',   # Adds a prefix to every cache key.
+        'KEY_PREFIX': 'alfred',   # Adds a prefix to every cache key.
         'TIMEOUT': 300,  # Default cache expiry time = 300s (5 mins).
     }
 }
@@ -488,7 +487,7 @@ EMAIL_PORT          = int(os.getenv('EMAIL_PORT', 587))
 EMAIL_USE_TLS       = os.getenv('EMAIL_USE_TLS', 'True') == 'True'
 EMAIL_HOST_USER     = os.getenv('EMAIL_HOST_USER', '')
 EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-DEFAULT_FROM_EMAIL  = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@amuslimmatrimony.com')
+DEFAULT_FROM_EMAIL  = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@alfredai.com')
 
 
 # OTP lifetimes (seconds)
