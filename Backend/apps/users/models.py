@@ -183,9 +183,14 @@ class User(AbstractUser):
     def is_subscribed_annual(self) -> bool:
         """True for Annual subscribers."""
         return self.subscription_plan == SubscriptionPlan.ANNUAL
+
+    @property
+    def is_admin(self) -> bool:
+        """True for platform administrators."""
+        return self.is_staff and self.is_superuser
     
     def __str__(self):
-        return f"{self.codename or self.email} ({self.role})"
+        return self.full_name or self.email
 
     class Meta:
         verbose_name        = "User"

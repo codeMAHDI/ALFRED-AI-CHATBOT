@@ -11,8 +11,8 @@ from rest_framework_simplejwt.views import (
 
 urlpatterns = [
     # Include app-specific URL configurations
-    path('user/', include('users.urls')),
-    path('notification/', include('notifications.urls')),
+    path('user/', include('apps.users.urls')),
+    path('notification/', include('apps.notifications.urls')),
 
 
     #JWT endpoints

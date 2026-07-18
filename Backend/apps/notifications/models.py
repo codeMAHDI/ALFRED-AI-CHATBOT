@@ -1,13 +1,5 @@
 """
-notifications/models.py
-
-Delivery strategy:
-    Normal Users → DB record only — mobile app polls via REST endpoints.
-    Admin → DB record + real-time WebSocket push.
-
-Notification types cover all Alfred AI events:
-    auth, connection requests, matches, photo requests, wali requests,
-    unlock flow, chat messages, private matchmaking, and admin-specific alerts.
+Notification models for the Alfred backend.
 """
 
 import uuid
@@ -18,44 +10,47 @@ from django.db import models
 User = get_user_model()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Choices
-# ─────────────────────────────────────────────────────────────────────────────
-
 class NotificationType(models.TextChoices):
-    # ── Auth / Account ────────────────────────────────────────────────────────
-    WELCOME                         = "welcome",                        "Welcome"
-    PASSWORD_CHANGED                = "pass_changed",                   "Password Changed"
-    ACCOUNT_BLOCKED                 = "account_blocked",                "Account Blocked"
+    # Account / authentication
+    WELCOME = "welcome", "Welcome"
+    PASSWORD_CHANGED = "pass_changed", "Password Changed"
+    ACCOUNT_BLOCKED = "account_blocked", "Account Blocked"
+    ACCOUNT_REACTIVATED = "account_reactivated", "Account Reactivated"
+    PROFILE_COMPLETED = "profile_completed", "Profile Completed"
+    ONBOARDING_COMPLETED = "onboarding_completed", "Onboarding Completed"
 
-    # ── Admin-only alerts ─────────────────────────────────────────────────────
-    NEW_USER_JOINED                 = "new_user_joined",                "New User Joined"
-    
-    # TODO: Add more notification types for other events as needed.
+    # Plans / calendar
+    PLAN_SAVED = "plan_saved", "Plan Saved"
+    PLAN_REMINDER = "plan_reminder", "Plan Reminder"
+    EVENT_STARTING_SOON = "event_starting_soon", "Event Starting Soon"
+
+    # Subscription / billing
+    SUBSCRIPTION_UPGRADED = "subscription_upgraded", "Subscription Upgraded"
+    SUBSCRIPTION_EXPIRING = "subscription_expiring", "Subscription Expiring"
+    SUBSCRIPTION_EXPIRED = "subscription_expired", "Subscription Expired"
+    PAYMENT_FAILED = "payment_failed", "Payment Failed"
+
+    # AI / product
+    SYSTEM_ANNOUNCEMENT = "system_announcement", "System Announcement"
+
+    # Admin-facing alerts
+    NEW_USER_JOINED = "new_user_joined", "New User Joined"
+    ADMIN_BROADCAST = "admin_broadcast", "Admin Broadcast"
 
 
 class NotificationPriority(models.TextChoices):
-    LOW     = "low",    "Low"
-    NORMAL  = "normal", "Normal"
-    HIGH    = "high",   "High"
-    URGENT  = "urgent", "Urgent"
+    LOW = "low", "Low"
+    NORMAL = "normal", "Normal"
+    HIGH = "high", "High"
+    URGENT = "urgent", "Urgent"
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Model
-# ─────────────────────────────────────────────────────────────────────────────
 
 class Notification(models.Model):
     """
     Single notification table shared across all user roles.
-
-    Delivery notes:
-        • Users: DB record only — clients poll via REST.
-        • Admin: DB record + WebSocket push attempted immediately.
-          `websocket_pushed` / `websocket_success` track delivery status.
     """
 
-    id   = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
@@ -67,9 +62,9 @@ class Notification(models.Model):
         choices=NotificationType.choices,
         db_index=True,
     )
-    title    = models.CharField(max_length=255)
-    body     = models.TextField()
-    data     = models.JSONField(default=dict, blank=True)  # arbitrary context payload
+    title = models.CharField(max_length=255)
+    body = models.TextField()
+    data = models.JSONField(default=dict, blank=True)
     priority = models.CharField(
         max_length=20,
         choices=NotificationPriority.choices,
@@ -90,7 +85,6 @@ class Notification(models.Model):
     # Read tracking — used by all roles
     is_read = models.BooleanField(default=False, db_index=True)
     read_at = models.DateTimeField(null=True, blank=True)
-
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -102,4 +96,4 @@ class Notification(models.Model):
         ]
 
     def __str__(self):
-        return f"[{self.notification_type}] {self.title} → {self.user.email}"
+        return f"[{self.notification_type}] {self.title} -> {self.user.email}"

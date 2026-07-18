@@ -1,17 +1,5 @@
 """
-notifications/services.py
-
-Delivery strategy:
-    User  → DB record only. Mobile app polls REST endpoints.
-    Admin → DB record + real-time WebSocket push.
-
-Usage:
-    Never call NotificationService directly from views or other apps.
-    Always go through NotificationTemplates — one method per domain event.
-
-Example:
-    from notifications.services import NotificationTemplates
-    NotificationTemplates.connection_request_received(receiver=user, sender=other_user)
+Notification services used by the backend.
 """
 
 import logging
@@ -21,54 +9,28 @@ from channels.layers import get_channel_layer
 from django.contrib.auth import get_user_model
 from django.utils import timezone
 
-from .models import *
+from .models import Notification, NotificationPriority, NotificationType
 
 logger = logging.getLogger(__name__)
 User = get_user_model()
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Admin role check helper
-# ─────────────────────────────────────────────────────────────────────────────
-
 def _is_admin(user) -> bool:
-    """Returns True for Admin roles."""
-    return getattr(user, "is_staff", False) and getattr(user, "is_superuser", False)  # TODO: Logic recheck
+    return getattr(user, "is_staff", False) and getattr(user, "is_superuser", False)
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Low-level engine — internal use only
-# ─────────────────────────────────────────────────────────────────────────────
 
 class NotificationService:
-    """
-    Core dispatcher — not called directly from outside this module.
-    Route all notification triggers through NotificationTemplates instead.
-
-    Routing logic (automatic, resolved via user.role):
-        User  → DB write only
-        Admin → DB write + WebSocket push
-    """
-
     @staticmethod
     def send(
         user,
         notification_type: str,
         title: str,
         body: str,
-        data: dict = None,
+        data: dict | None = None,
         priority: str = NotificationPriority.NORMAL,
-    ) -> "Notification | None":
-        """
-        Persist a Notification and dispatch it appropriately.
-
-        Returns:
-            The created Notification instance, or None if notifications are
-            disabled for this user.
-        """
-        # Respect per-user notification preference (if the setting exists)
+    ) -> Notification | None:
         if hasattr(user, "settings") and not user.settings.notification_enabled:
-            logger.info("Notifications disabled for %s — skipped.", user.email)
+            logger.info("Notifications disabled for %s, skipped.", user.email)
             return None
 
         notification = Notification.objects.create(
@@ -81,7 +43,6 @@ class NotificationService:
         )
 
         if _is_admin(user):
-            # Admin gets an additional real-time WebSocket push
             ws_ok = NotificationService._push_websocket(
                 user_id=str(user.id),
                 notification_id=str(notification.id),
@@ -91,22 +52,11 @@ class NotificationService:
                 data=data or {},
                 priority=priority,
             )
-            notification.websocket_pushed  = True
+            notification.websocket_pushed = True
             notification.websocket_success = ws_ok
             notification.save(update_fields=["websocket_pushed", "websocket_success"])
-            logger.info(
-                "Admin notification → %s | type=%s | ws_ok=%s",
-                user.email, notification_type, ws_ok,
-            )
-        else:
-            logger.info(
-                "Notification saved → %s | type=%s | role=%s (REST polling)",
-                user.email, notification_type, getattr(user, "role", "unknown"),
-            )
 
         return notification
-
-    # ── WebSocket push — admin dashboard only ─────────────────────────────────
 
     @staticmethod
     def _push_websocket(
@@ -118,20 +68,19 @@ class NotificationService:
         data: dict,
         priority: str,
     ) -> bool:
-        """Push to the admin's open WebSocket channel. Returns True on success."""
         try:
             channel_layer = get_channel_layer()
             async_to_sync(channel_layer.group_send)(
                 f"user_{user_id}",
                 {
-                    "type":              "notification_message",  # maps to consumer method
-                    "notification_id":   notification_id,
+                    "type": "notification_message",
+                    "notification_id": notification_id,
                     "notification_type": notification_type,
-                    "title":             title,
-                    "body":              body,
-                    "data":              data,
-                    "priority":          priority,
-                    "timestamp":         timezone.now().isoformat(),
+                    "title": title,
+                    "body": body,
+                    "data": data,
+                    "priority": priority,
+                    "timestamp": timezone.now().isoformat(),
                 },
             )
             return True
@@ -139,21 +88,14 @@ class NotificationService:
             logger.error("WebSocket push failed for user %s: %s", user_id, exc)
             return False
 
-    # ── Broadcast helpers ─────────────────────────────────────────────────────
-
     @staticmethod
     def send_to_all_admins(
         notification_type: str,
         title: str,
         body: str,
-        data: dict = None,
+        data: dict | None = None,
     ) -> None:
-        """Send a notification to every active admin."""
-        admins = User.objects.filter(
-            is_staff=True,
-            is_superuser=True,
-            is_active=True,
-        )
+        admins = User.objects.filter(is_staff=True, is_superuser=True, is_active=True)
         for admin in admins:
             NotificationService.send(
                 user=admin,
@@ -164,57 +106,216 @@ class NotificationService:
             )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# High-level domain templates — the ONLY public interface for other apps
-# ─────────────────────────────────────────────────────────────────────────────
-
 class NotificationTemplates:
-    """
-    One static method per AMM domain event.
-
-    Import and call these from views, signals, or Celery tasks — never
-    call NotificationService directly from outside this file.
-
-    Example:
-        from notifications.services import NotificationTemplates
-        NotificationTemplates.welcome(user)
-    """
-
-    # ── Auth / Account ────────────────────────────────────────────────────────
+    # Account / onboarding
 
     @staticmethod
-    def welcome(user) -> "Notification | None":
-        """Sent immediately after successful email verification."""
+    def welcome(user) -> Notification | None:
+        display_name = user.full_name or user.email
         return NotificationService.send(
             user=user,
             notification_type=NotificationType.WELCOME,
-            title="Welcome to A Muslim Matchmaker 🌙",
-            body=f"As-salamu alaykum {user.first_name} {user.last_name} or {user.email}! Your account is ready. Complete your profile to get started.",
+            title="Welcome to Alfred AI",
+            body=f"Hello {display_name}! Your account is ready. Complete your profile to get started.",
             priority=NotificationPriority.NORMAL,
         )
 
     @staticmethod
-    def password_changed(user) -> "Notification | None":
-        """Sent after a successful password change or reset."""
+    def password_changed(user) -> Notification | None:
         return NotificationService.send(
             user=user,
             notification_type=NotificationType.PASSWORD_CHANGED,
             title="Password Changed",
-            body="Your AMM password was changed successfully. If this wasn't you, contact support immediately.",
+            body="Your Alfred AI password was changed successfully. If this wasn't you, contact support immediately.",
             priority=NotificationPriority.HIGH,
         )
 
-    
-    
-    # ── Admin-only alerts ─────────────────────────────────────────────────────
+    @staticmethod
+    def account_blocked(user) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.ACCOUNT_BLOCKED,
+            title="Account Blocked",
+            body="Your Alfred AI account has been blocked. Please contact support if you believe this is a mistake.",
+            priority=NotificationPriority.URGENT,
+        )
+
+    @staticmethod
+    def account_reactivated(user) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.ACCOUNT_REACTIVATED,
+            title="Account Reactivated",
+            body="Your Alfred AI account has been reactivated. You can continue using the app normally.",
+            priority=NotificationPriority.HIGH,
+        )
+
+    @staticmethod
+    def profile_completed(user) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.PROFILE_COMPLETED,
+            title="Profile Completed",
+            body="Nice work. Your profile is now complete and Alfred can personalize your experience better.",
+            priority=NotificationPriority.NORMAL,
+        )
+
+    @staticmethod
+    def onboarding_completed(user) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.ONBOARDING_COMPLETED,
+            title="Onboarding Complete",
+            body="Thanks for sharing your preferences. Alfred is ready to make more personalized suggestions.",
+            priority=NotificationPriority.NORMAL,
+        )
+
+    # Plans / calendar
+
+    @staticmethod
+    def plan_saved(user, plan_id: str, title: str) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.PLAN_SAVED,
+            title="Plan Saved",
+            body=f'"{title}" has been saved to your plans.',
+            data={"plan_id": str(plan_id), "title": title},
+            priority=NotificationPriority.NORMAL,
+        )
+
+    @staticmethod
+    def plan_reminder(
+        user,
+        plan_id: str,
+        title: str,
+        scheduled_for: str | None = None,
+    ) -> Notification | None:
+        body = f'Reminder: "{title}" is coming up soon.'
+        if scheduled_for:
+            body = f'Reminder: "{title}" is scheduled for {scheduled_for}.'
+
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.PLAN_REMINDER,
+            title="Plan Reminder",
+            body=body,
+            data={"plan_id": str(plan_id), "title": title, "scheduled_for": scheduled_for},
+            priority=NotificationPriority.HIGH,
+        )
+
+    @staticmethod
+    def event_starting_soon(
+        user,
+        event_id: str,
+        title: str,
+        starts_at: str | None = None,
+    ) -> Notification | None:
+        body = f'"{title}" is starting soon.'
+        if starts_at:
+            body = f'"{title}" starts at {starts_at}.'
+
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.EVENT_STARTING_SOON,
+            title="Event Starting Soon",
+            body=body,
+            data={"event_id": str(event_id), "title": title, "starts_at": starts_at},
+            priority=NotificationPriority.HIGH,
+        )
+
+    # Subscription / billing
+
+    @staticmethod
+    def subscription_upgraded(user, plan_name: str) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.SUBSCRIPTION_UPGRADED,
+            title="Subscription Upgraded",
+            body=f"Your Alfred AI subscription is now {plan_name}.",
+            data={"plan_name": plan_name},
+            priority=NotificationPriority.HIGH,
+        )
+
+    @staticmethod
+    def subscription_expiring(
+        user,
+        plan_name: str,
+        ends_on: str | None = None,
+    ) -> Notification | None:
+        body = f"Your {plan_name} subscription will expire soon."
+        if ends_on:
+            body = f"Your {plan_name} subscription will expire on {ends_on}."
+
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.SUBSCRIPTION_EXPIRING,
+            title="Subscription Expiring",
+            body=body,
+            data={"plan_name": plan_name, "ends_on": ends_on},
+            priority=NotificationPriority.HIGH,
+        )
+
+    @staticmethod
+    def subscription_expired(user, plan_name: str) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.SUBSCRIPTION_EXPIRED,
+            title="Subscription Expired",
+            body=f"Your {plan_name} subscription has expired.",
+            data={"plan_name": plan_name},
+            priority=NotificationPriority.URGENT,
+        )
+
+    @staticmethod
+    def payment_failed(user, plan_name: str | None = None) -> Notification | None:
+        body = "We could not process your latest payment."
+        if plan_name:
+            body = f"We could not process your payment for the {plan_name} subscription."
+
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.PAYMENT_FAILED,
+            title="Payment Failed",
+            body=body,
+            data={"plan_name": plan_name},
+            priority=NotificationPriority.URGENT,
+        )
+
+    # AI / product
+
+    @staticmethod
+    def system_announcement(
+        user,
+        title: str,
+        body: str,
+        data: dict | None = None,
+    ) -> Notification | None:
+        return NotificationService.send(
+            user=user,
+            notification_type=NotificationType.SYSTEM_ANNOUNCEMENT,
+            title=title,
+            body=body,
+            data=data,
+            priority=NotificationPriority.NORMAL,
+        )
+
+    # Admin-facing alerts
 
     @staticmethod
     def new_user_joined(new_user) -> None:
-        """Broadcast to all admins when a new user completes registration."""
-        role_display = getattr(new_user, "role", "user").capitalize()
+        display_name = new_user.full_name or new_user.email
         NotificationService.send_to_all_admins(
             notification_type=NotificationType.NEW_USER_JOINED,
-            title=f"New {role_display} Registered",
-            body=f"{new_user.first_name} {new_user.last_name} or {new_user.email} ({new_user.codename}) just joined AMM.",
-            data={"user_id": str(new_user.id), "codename": new_user.codename, "role": new_user.role},
+            title="New User Registered",
+            body=f"{display_name} just joined Alfred AI.",
+            data={"user_id": str(new_user.id), "email": new_user.email},
+        )
+
+    @staticmethod
+    def admin_broadcast(title: str, body: str, data: dict | None = None) -> None:
+        NotificationService.send_to_all_admins(
+            notification_type=NotificationType.ADMIN_BROADCAST,
+            title=title,
+            body=body,
+            data=data,
         )

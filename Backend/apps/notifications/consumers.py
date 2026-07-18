@@ -73,7 +73,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
 
         await self.send(text_data=json.dumps({
             "type":    "connection_established",
-            "message": "Connected to AMM notification service",
+            "message": "Connected to Alfred AI notification service",
             "user_id": str(self.user.id),
         }))
 
@@ -157,13 +157,13 @@ class NotificationConsumer(AsyncWebsocketConsumer):
     @database_sync_to_async
     def _is_admin(self, user) -> bool:
         """Check if the authenticated user has an admin role."""
-        return getattr(user, "role", None) in ("matchmaker", "superadmin")
+        return getattr(user, "is_staff", False) and getattr(user, "is_superuser", False)
 
     @database_sync_to_async
     def _mark_notification_read(self, notification_id: str) -> bool:
         """Mark a notification as read. Returns True on success, False if not found."""
         from django.utils import timezone
-        from notifications.models import Notification
+        from .models import Notification
         try:
             n = Notification.objects.get(id=notification_id, user=self.user)
             if not n.is_read:
