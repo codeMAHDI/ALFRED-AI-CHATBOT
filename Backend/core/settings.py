@@ -351,6 +351,12 @@ SPECTACULAR_SETTINGS = {
     #'POSTMAN_ENABLED': True,
     'SORT_OPERATIONS': False,
     
+    # Swagger Tags Alphabetical Sorting
+    'SWAGGER_UI_SETTINGS': {
+        'tagsSorter': 'alpha',
+        'operationsSorter': 'alpha',
+    },
+    
 }
 
 
