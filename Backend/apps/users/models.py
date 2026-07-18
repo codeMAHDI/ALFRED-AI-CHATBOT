@@ -108,13 +108,16 @@ class User(AbstractUser):
     )
     age = models.PositiveIntegerField(blank=True, null=True, verbose_name=_("Age"))
 
-    # ── Contact ───────────────────────────────────────────────────────────────
+    # ──   DP     ───────────────────────────────────────────────────────────────
     profile_picture = models.ImageField(
         upload_to="users/profile_pictures/",
         blank=True,
         null=True,
         verbose_name=_("Profile Picture"),
     )
+    
+    # Admin only
+    bio = models.TextField(blank=True, null=True, verbose_name=_("Bio"))
     
     # ── Location and preferences ──────────────────────────────────────────────
     location = models.CharField(max_length=255, blank=True, null=True, verbose_name=_("Location"))

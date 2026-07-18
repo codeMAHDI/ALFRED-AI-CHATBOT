@@ -494,6 +494,7 @@ class AdminProfileSerializer(serializers.ModelSerializer):
             "full_name",
             "email",
             "profile_picture",
+            "bio",
             "member_since",
             "created_at",
             "updated_at",
