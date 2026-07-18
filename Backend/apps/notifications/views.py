@@ -1,23 +1,19 @@
 """
 notifications/views.py
 
-REST endpoints for notifications — separated by Swagger tag for clean API docs.
+REST endpoints for notifications with separate Swagger tags for user and admin
+consumers.
 
 Swagger tag structure:
-    "Notifications - Shared"  → Male, Female, Wali (all poll via REST)
-    "Notifications - Admin"   → Matchmaker & Superadmin (REST + WebSocket)
+    "Notifications - User"   -> Regular authenticated users (REST polling)
+    "Notifications - Admin"  -> Platform administrators (REST + WebSocket)
 
-Both tag groups hit the same underlying logic via _NotificationMixin.
-The tag split is purely for documentation clarity — no duplicate code.
+Both tag groups use the same underlying logic via _NotificationMixin. The tag
+split is only for documentation clarity.
 
-WebSocket (Admin dashboard only):
+WebSocket (admin dashboard only):
     ws://host/ws/notifications/?token=<access_token>
     Handled by NotificationConsumer in consumers.py.
-    Admins receive real-time pushes automatically when NotificationTemplates
-    methods targeting admins are called anywhere in the codebase.
-
-URL registration:
-    See notifications/urls.py for router setup.
 """
 
 import logging
@@ -36,21 +32,17 @@ from rest_framework.decorators import action
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 
-from .models import *
-from .serializers import *
+from .models import Notification
+from .serializers import NotificationSerializer
 
 logger = logging.getLogger(__name__)
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Inline response schemas for Swagger
-# ─────────────────────────────────────────────────────────────────────────────
 
 _mark_all_read_response = inline_serializer(
     name="MarkAllReadResponse",
     fields={
         "message": drf_serializers.CharField(),
-        "count":   drf_serializers.IntegerField(),
+        "count": drf_serializers.IntegerField(),
     },
 )
 
@@ -62,32 +54,28 @@ _unread_count_response = inline_serializer(
 _clear_read_response = inline_serializer(
     name="ClearReadResponse",
     fields={
-        "message":       drf_serializers.CharField(),
+        "message": drf_serializers.CharField(),
         "deleted_count": drf_serializers.IntegerField(),
     },
 )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Shared mixin — all logic lives here once
-# ─────────────────────────────────────────────────────────────────────────────
-
 class _NotificationMixin:
     """
-    Shared queryset and custom actions.
-    Concrete view classes only differ in permission_classes and Swagger tags.
+    Shared queryset and custom actions for notification viewsets.
     """
 
     serializer_class = NotificationSerializer
     filterset_fields = ["is_read", "notification_type", "priority"]
-    ordering_fields  = ["created_at"]
-    ordering         = ["-created_at"]
+    ordering_fields = ["created_at"]
+    ordering = ["-created_at"]
+    queryset = Notification.objects.none()
 
     def get_queryset(self):
         """Return only the authenticated user's notifications."""
+        if getattr(self, "swagger_fake_view", False):
+            return Notification.objects.none()
         return Notification.objects.filter(user=self.request.user)
-
-    # ── Custom actions ────────────────────────────────────────────────────────
 
     @action(detail=True, methods=["post"], url_path="mark-read")
     def mark_read(self, request, pk=None):
@@ -103,18 +91,21 @@ class _NotificationMixin:
     def mark_all_read(self, request):
         """Bulk-mark every unread notification as read."""
         count = (
-            Notification.objects
-            .filter(user=request.user, is_read=False)
-            .update(is_read=True, read_at=timezone.now())
+            Notification.objects.filter(user=request.user, is_read=False).update(
+                is_read=True,
+                read_at=timezone.now(),
+            )
         )
-        return Response({
-            "message": f"{count} notification(s) marked as read.",
-            "count":   count,
-        })
+        return Response(
+            {
+                "message": f"{count} notification(s) marked as read.",
+                "count": count,
+            }
+        )
 
     @action(detail=False, methods=["get"], url_path="unread-count")
     def unread_count(self, request):
-        """Return the count of unread notifications for the current user."""
+        """Return the unread notification count for the current user."""
         count = Notification.objects.filter(user=request.user, is_read=False).count()
         return Response({"unread_count": count})
 
@@ -124,36 +115,46 @@ class _NotificationMixin:
         deleted, _ = Notification.objects.filter(user=request.user, is_read=True).delete()
         return Response(
             {
-                "message":       f"{deleted} notification(s) deleted.",
+                "message": f"{deleted} notification(s) deleted.",
                 "deleted_count": deleted,
             },
             status=status.HTTP_200_OK,
         )
 
 
-# ─────────────────────────────────────────────────────────────────────────────
-# Shared — Male, Female, Wali
-# ─────────────────────────────────────────────────────────────────────────────
-
-@extend_schema(tags=["Notifications - Shared"])
+@extend_schema(tags=["Notifications - User"])
 @extend_schema_view(
     list=extend_schema(
         summary="List my notifications",
         description=(
-            "Returns all notifications for the authenticated user, "
-            "ordered newest first.\n\n"
-            "Mobile clients should **poll this endpoint** periodically to fetch new notifications "
-            "— no WebSocket is used for these roles.\n\n"
-            "**Filterable by:** `is_read`, `notification_type`, `priority`\n\n"
-            "Response does **not** include `websocket_pushed` or `websocket_success` fields "
-            "because these roles do not receive WebSocket pushes."
+            "Returns all notifications for the authenticated user, ordered newest "
+            "first.\n\n"
+            "Mobile clients should poll this endpoint periodically to fetch new "
+            "notifications because regular user notifications are delivered via "
+            "REST only.\n\n"
+            "Filterable by: `is_read`, `notification_type`, `priority`.\n\n"
+            "Response does not include `websocket_pushed` or "
+            "`websocket_success` because regular users do not receive WebSocket "
+            "pushes."
         ),
         parameters=[
-            OpenApiParameter("is_read",            bool, description="Filter by read status. `true` or `false`."),
-            OpenApiParameter("notification_type",  str,  description="Filter by notification type slug."),
-            OpenApiParameter("priority",           str,  description="Filter by priority: `low`, `normal`, `high`, `urgent`."),
-            OpenApiParameter("page",               int,  description="Page number."),
-            OpenApiParameter("page_size",          int,  description="Results per page (default 8, max 600)."),
+            OpenApiParameter("is_read", bool, description="Filter by read status."),
+            OpenApiParameter(
+                "notification_type",
+                str,
+                description="Filter by notification type slug.",
+            ),
+            OpenApiParameter(
+                "priority",
+                str,
+                description="Filter by priority: `low`, `normal`, `high`, `urgent`.",
+            ),
+            OpenApiParameter("page", int, description="Page number."),
+            OpenApiParameter(
+                "page_size",
+                int,
+                description="Results per page (default 8, max 600).",
+            ),
         ],
         responses={200: NotificationSerializer(many=True)},
     ),
@@ -164,7 +165,7 @@ class _NotificationMixin:
     ),
     mark_read=extend_schema(
         summary="Mark a notification as read",
-        description="Sets `is_read=true` and records `read_at` timestamp for a single notification.",
+        description="Sets `is_read=true` and stores the `read_at` timestamp.",
         responses={200: NotificationSerializer},
     ),
     mark_all_read=extend_schema(
@@ -185,82 +186,89 @@ class _NotificationMixin:
 )
 class UserNotificationViewSet(_NotificationMixin, viewsets.ReadOnlyModelViewSet):
     """
-    Notification feed for **Male, Female, and Wali** users.
+    Notification feed for authenticated users.
 
-    All roles share these endpoints — mobile clients poll REST periodically.
+    Mobile clients poll these endpoints periodically for new notifications.
     No WebSocket is used for non-admin users.
     """
+
     permission_classes = [IsAuthenticated]
 
-
-# ─────────────────────────────────────────────────────────────────────────────
-# Admin — Matchmaker & Superadmin
-# ─────────────────────────────────────────────────────────────────────────────
 
 @extend_schema(tags=["Notifications - Admin"])
 @extend_schema_view(
     list=extend_schema(
-        summary="Admin — List my notifications",
+        summary="Admin - List my notifications",
         description=(
-            "Returns all notifications for the authenticated admin "
-            "(Matchmaker or Superadmin), ordered newest first.\n\n"
-            "Admin notifications are **also pushed in real-time via WebSocket**:\n"
+            "Returns all notifications for the authenticated admin user, ordered "
+            "newest first.\n\n"
+            "Admin notifications are also pushed in real time via WebSocket:\n"
             "```\n"
             "ws://host/ws/notifications/?token=<access_token>\n"
             "```\n"
-            "The dashboard should connect to the WebSocket on load and fall back to "
-            "polling this REST endpoint if the socket disconnects.\n\n"
-            "**Filterable by:** `is_read`, `notification_type`, `priority`\n\n"
-            "Response includes `websocket_pushed` and `websocket_success` fields "
-            "for delivery-status visibility."
+            "The admin dashboard should connect to the WebSocket on load and "
+            "fall back to polling this REST endpoint if the socket disconnects.\n\n"
+            "Filterable by: `is_read`, `notification_type`, `priority`.\n\n"
+            "Response includes `websocket_pushed` and `websocket_success` for "
+            "delivery-status visibility."
         ),
         parameters=[
-            OpenApiParameter("is_read",            bool, description="Filter by read status. `true` or `false`."),
-            OpenApiParameter("notification_type",  str,  description="Filter by notification type slug."),
-            OpenApiParameter("priority",           str,  description="Filter by priority: `low`, `normal`, `high`, `urgent`."),
-            OpenApiParameter("page",               int,  description="Page number."),
-            OpenApiParameter("page_size",          int,  description="Results per page (default 8, max 600)."),
+            OpenApiParameter("is_read", bool, description="Filter by read status."),
+            OpenApiParameter(
+                "notification_type",
+                str,
+                description="Filter by notification type slug.",
+            ),
+            OpenApiParameter(
+                "priority",
+                str,
+                description="Filter by priority: `low`, `normal`, `high`, `urgent`.",
+            ),
+            OpenApiParameter("page", int, description="Page number."),
+            OpenApiParameter(
+                "page_size",
+                int,
+                description="Results per page (default 8, max 600).",
+            ),
         ],
         responses={200: NotificationSerializer(many=True)},
     ),
     retrieve=extend_schema(
-        summary="Admin — Get a single notification",
+        summary="Admin - Get a single notification",
         description=(
             "Retrieve full details of a single notification by its UUID.\n\n"
-            "Includes `websocket_pushed` and `websocket_success` delivery metadata "
-            "to help debug real-time delivery issues."
+            "Includes `websocket_pushed` and `websocket_success` delivery "
+            "metadata to help debug real-time delivery issues."
         ),
         responses={200: NotificationSerializer},
     ),
     mark_read=extend_schema(
-        summary="Admin — Mark a notification as read",
-        description="Sets `is_read=true` and records `read_at` timestamp for a single notification.",
+        summary="Admin - Mark a notification as read",
+        description="Sets `is_read=true` and stores the `read_at` timestamp.",
         responses={200: NotificationSerializer},
     ),
     mark_all_read=extend_schema(
-        summary="Admin — Mark all notifications as read",
+        summary="Admin - Mark all notifications as read",
         description="Bulk-marks every unread admin notification as read in one call.",
         responses={200: _mark_all_read_response},
     ),
     unread_count=extend_schema(
-        summary="Admin — Get unread notification count",
+        summary="Admin - Get unread notification count",
         description="Returns the number of unread notifications for the current admin user.",
         responses={200: _unread_count_response},
     ),
     clear_read=extend_schema(
-        summary="Admin — Delete all read notifications",
+        summary="Admin - Delete all read notifications",
         description="Permanently removes all read notifications for the current admin. Irreversible.",
         responses={200: _clear_read_response},
     ),
 )
 class AdminNotificationViewSet(_NotificationMixin, viewsets.ReadOnlyModelViewSet):
     """
-    Notification feed for Admin.
+    Notification feed for platform administrators.
 
-    Admins receive DB-persisted notifications AND real-time WebSocket pushes.
-    `websocket_pushed` / `websocket_success` fields reflect delivery status.
-
-    WebSocket: ws://host/ws/notifications/?token=<access_token>
+    Admins receive persisted notifications and real-time WebSocket pushes.
+    `websocket_pushed` and `websocket_success` reflect delivery status.
     """
-    # permission_classes = [IsAdminUser]  # TODO: swap in once permission class is defined
+
     permission_classes = [IsAuthenticated]

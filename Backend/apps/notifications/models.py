@@ -47,7 +47,7 @@ class NotificationPriority(models.TextChoices):
 
 class Notification(models.Model):
     """
-    Single notification table shared across all user roles.
+    Single notification table shared across user and admin notification flows.
     """
 
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -71,8 +71,8 @@ class Notification(models.Model):
         default=NotificationPriority.NORMAL,
     )
 
-    # Delivery tracking — meaningful only for admin WebSocket channel.
-    # Stays False for Users (REST polling only).
+    # Delivery tracking is only meaningful for admin WebSocket delivery.
+    # These remain False for regular user notifications, which are polled via REST.
     websocket_pushed = models.BooleanField(
         default=False,
         help_text="True when a real-time WebSocket push was attempted (admin only).",
@@ -82,7 +82,7 @@ class Notification(models.Model):
         help_text="True when the WebSocket push was confirmed sent (admin only).",
     )
 
-    # Read tracking — used by all roles
+    # Read tracking is shared by both user and admin notifications.
     is_read = models.BooleanField(default=False, db_index=True)
     read_at = models.DateTimeField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
