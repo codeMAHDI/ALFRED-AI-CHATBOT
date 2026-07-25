@@ -49,6 +49,171 @@ Flutter App
 
 ---
 
+# Local Development
+
+These commands are intended for day-to-day backend development on Windows from the VS Code terminal.
+
+## 1. Setup
+
+From the repository root:
+
+```powershell
+cd Backend
+python -m venv .venv
+.\.venv\Scripts\activate
+pip install -r requirements.txt
+```
+
+Create or update `Backend/.env`. At minimum for local development:
+
+```env
+DEBUG=True
+ALLOWED_HOSTS=localhost,127.0.0.1,10.10.28.178
+DB_ENGINE=django.db.backends.sqlite3
+REDIS_HOST=localhost
+REDIS_PORT=6379
+```
+
+Use your own LAN IP in `ALLOWED_HOSTS` if another device or collaborator needs to access the backend from the same network.
+
+## 2. Database
+
+Run migrations:
+
+```powershell
+python manage.py migrate
+```
+
+Create an admin user:
+
+```powershell
+python manage.py createsuperuser
+```
+
+Check the project:
+
+```powershell
+python manage.py check
+```
+
+Run tests:
+
+```powershell
+python manage.py test
+```
+
+## 3. Start The Full Dev Stack
+
+Use the helper script:
+
+```powershell
+.\scripts\start-dev.cmd
+```
+
+This starts:
+
+- Redis, if `redis-server` is available in `PATH`
+- Daphne ASGI server on `0.0.0.0:8888`
+- Celery worker
+- Celery beat
+
+Open Swagger:
+
+```text
+http://localhost:8888/api/docs/
+```
+
+For another device on the same network, use your LAN IP:
+
+```text
+http://10.10.28.178:8888/api/docs/
+```
+
+The server must be running on `0.0.0.0`, and the LAN IP must be included in `ALLOWED_HOSTS`.
+
+## 4. Stop The Dev Stack
+
+```powershell
+.\scripts\stop-dev.cmd
+```
+
+The script stops the processes it started using PID records stored in:
+
+```text
+Backend/.runtime/
+```
+
+This folder is ignored by git.
+
+## 5. Useful Start Options
+
+Run on another port:
+
+```powershell
+.\scripts\start-dev.cmd -Port 8899
+```
+
+Skip Redis if it is already running separately:
+
+```powershell
+.\scripts\start-dev.cmd -SkipRedis
+```
+
+View logs:
+
+```powershell
+Get-ChildItem .\.runtime\logs
+Get-Content .\.runtime\logs\asgi.err.log -Tail 100
+Get-Content .\.runtime\logs\celery-worker.err.log -Tail 100
+Get-Content .\.runtime\logs\celery-beat.err.log -Tail 100
+```
+
+## 6. Redis Notes
+
+For local Windows development without Docker, Redis should usually be reachable at:
+
+```text
+redis://localhost:6379
+```
+
+If `redis-server` is not installed or not available in `PATH`, start Redis manually and then run:
+
+```powershell
+.\scripts\start-dev.cmd -SkipRedis
+```
+
+When Docker Compose is added later, `REDIS_HOST=redis` will be correct inside containers. For local Windows scripts, use `REDIS_HOST=localhost`.
+
+## 7. Manual Fallback Commands
+
+If you ever want to run each process manually in separate terminals:
+
+Terminal 1:
+
+```powershell
+redis-server --port 6379
+```
+
+Terminal 2:
+
+```powershell
+python -m daphne -b 0.0.0.0 -p 8888 core.asgi:application
+```
+
+Terminal 3:
+
+```powershell
+python -m celery -A core worker --loglevel=info --pool=solo
+```
+
+Terminal 4:
+
+```powershell
+python -m celery -A core beat --loglevel=info
+```
+
+---
+
 # Architecture
 
 The backend follows a **feature-based architecture**.
